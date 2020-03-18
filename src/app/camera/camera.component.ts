@@ -26,8 +26,9 @@ export class CameraComponent implements OnInit {
   public captures: Array<any>;
   t1: any;
   description: string;
-  selectedFiles: FileList;
   currentFileUpload: File;
+  selectedFiles: FileList;
+  progress: { percentage: number } = { percentage: 0 };
   @Output()
   public pictureTaken = new EventEmitter<WebcamImage>();
 // toggle webcam on/off
@@ -112,22 +113,7 @@ export class CameraComponent implements OnInit {
     console.info('webcam', webcamImage.toString());
     this.pictureTaken.emit(webcamImage);
     console.log(    this.pictureTaken.emit(webcamImage));
-
     this.webcamImage = webcamImage;
-    const date = new Date().valueOf();
-    let text = '';
-    const possibleText = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    for (let i = 0; i < 5; i++) {
-      text += possibleText.charAt(Math.floor(Math.random() *    possibleText.length));
-    }
-// Replace extension according to your media type
-    const imageName = date + '.' + text + '.jpeg';
-// call method that creates a blob from dataUri
-    const imageBlob = this.dataURItoBlob(webcamImage.imageAsBase64);
-    const imageFile = new File([imageBlob], imageName, { type: 'image/jpeg' });
-    this.uploadService.pushFileToStorage(imageFile , this.description , this.id , this.cuurentof.id_offre ).subscribe(event => {
-    });
-
   }
   public cameraWasSwitched(deviceId: string): void {
     console.log('active device: ' + deviceId);
@@ -135,8 +121,8 @@ export class CameraComponent implements OnInit {
 
 
   }
-public upload() {
-} dataURItoBlob(dataURI) {
+
+dataURItoBlob(dataURI) {
     const byteString = window.atob(dataURI);
     const arrayBuffer = new ArrayBuffer(byteString.length);
     const int8Array = new Uint8Array(arrayBuffer);
@@ -146,6 +132,41 @@ public upload() {
     const blob = new Blob([int8Array], { type: 'image/jpeg' });
     return blob;
   }
+
+  uploadfile() {
+    this.progress.percentage = 0;
+    this.currentFileUpload = this.selectedFiles.item(0);
+    this.uploadService.pushFile(this.currentFileUpload  , this.description , this.id , this.cuurentof.id_offre).subscribe(event => {
+      if (event.type === HttpEventType.UploadProgress) {
+        this.progress.percentage = Math.round(100 * event.loaded / event.total);
+      } else if (event instanceof HttpResponse) {
+        console.log('File is completely uploaded!');
+      }
+    });
+
+    this.selectedFiles = undefined;
+  }
+  // latest snapshot
+
+  selectFile(event) {
+    this.selectedFiles = event.target.files;
+  }
+uploadwebimg() {
+  const date = new Date().valueOf();
+  let text = '';
+  const possibleText = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  for (let i = 0; i < 5; i++) {
+    text += possibleText.charAt(Math.floor(Math.random() *    possibleText.length));
+  }
+// Replace extension according to your media type
+  const imageName = date + '.' + text + '.jpeg';
+// call method that creates a blob from dataUri
+  const imageBlob = this.dataURItoBlob(this.webcamImage.imageAsBase64);
+  const imageFile = new File([imageBlob], imageName, { type: 'image/jpeg' });
+  this.uploadService.pushFileToStorage(imageFile , this.description , this.id , this.cuurentof.id_offre ).subscribe(event => {
+  });
+}
+
 }
 
 

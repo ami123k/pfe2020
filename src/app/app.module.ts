@@ -42,6 +42,8 @@ import { EntreprisebyeducationComponent } from './entreprisebyeducation/entrepri
 import { EnreprisebyfournitureComponent } from './enreprisebyfourniture/enreprisebyfourniture.component';
 import { EnreprisebyinformatiqueComponent } from './enreprisebyinformatique/enreprisebyinformatique.component';
 import { EnreprisebymaterielComponent } from './enreprisebymateriel/enreprisebymateriel.component';
+import { OffreFournisseurComponent } from './offre-fournisseur/offre-fournisseur.component';
+import { AjouterentrepriseComponent } from './ajouterentreprise/ajouterentreprise.component';
 
 @NgModule({
   declarations: [
@@ -73,7 +75,9 @@ import { EnreprisebymaterielComponent } from './enreprisebymateriel/enreprisebym
     EntreprisebyeducationComponent,
     EnreprisebyfournitureComponent,
     EnreprisebyinformatiqueComponent,
-    EnreprisebymaterielComponent
+    EnreprisebymaterielComponent,
+    OffreFournisseurComponent,
+    AjouterentrepriseComponent
   ],
   imports: [
     BrowserModule,

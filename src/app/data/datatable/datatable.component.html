@@ -83,8 +83,9 @@
     <th>description</th>
     <th>quantite</th>
     <th>categorie</th>
-    <th></th>
-    <th></th>
+    <th>delete</th>
+    <th>update</th>
+    <th>proposition</th>
   </tr>
   </thead>
   <tbody>
@@ -94,9 +95,8 @@
     <td>{{s.quantite}}</td>
     <td>{{s.categorie}}</td>
     <td><a class="btn btn-danger" (click)="onDelete(s.id_offre)">delete</a></td>
-    <td><a class="btn btn-info" (click)="onEdit(s)">Edit</a></td>
-    <td><a class="btn btn-info" (click)="onpropose(s)">proposer</a></td>
-    <td><a class="btn btn-info" (click)="onlistpropo(s)">proposer</a></td>
+    <td><a class="btn btn-success" (click)="onEdit(s)">Edit</a></td>
+    <td><a class="btn btn-info" (click)="onlistpropo(s)">proposition</a></td>
   </tr>
 
   </tbody>
@@ -106,6 +106,9 @@
     <th>description</th>
     <th>quantite</th>
     <th>categorie</th>
+    <th>delete</th>
+    <th>update</th>
+    <th>proposition</th>
   </tr>
   </tfoot>
 </table>

@@ -4,11 +4,11 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12 text-center">
-        <h2>Offre pour Esprit</h2>
+        <h2>Offres D' Esprit</h2>
         <h3>veuillez Proposer</h3>
         <p>
-          <a href="/data" class="btn btn-primary white">tous les offres</a>
-          <a href="#" class="btn btn-primary solid" >Get In Touch</a>
+          <a href="/offrefournisseur" class="btn btn-primary white">tous les offes</a>
+          <a href="#" class="btn btn-primary solid">Get In Touch</a>
         </p>
       </div>
     </div>
@@ -66,93 +66,64 @@
   <!--/ Container end -->
 </section>
 
-<!-- Content Header (Page header) -->
-<div class="row">
+
+<div class="content-wrapper"   >
+  <!-- Content Header (Page header) -->
+  <div class="row">
 
 
-  <div class="box" id="parent">
+    <div class="box" id="parent">
 
-    <!-- /.box-header -->
-    <div class="box-body" id="child-left">
-      <table #dataTable  class="table table-bordered table-striped" align="center" style="width:85% ">
-        <thead>
-        <tr>
-          <th>Name</th>
-          <th>description</th>
-          <th>quantite</th>
-          <th>categorie</th>
+      <!-- /.box-header -->
+      <div class="box-body" id="child-left">
+        <table #dataTable  class="table table-bordered table-striped" align="center" style="width:70% ">
+          <thead>
+          <tr>
+            <th>Name</th>
+            <th>description</th>
+            <th>quantite</th>
+            <th>categorie</th>
+            <th>proposer</th>
+            <th>propositions</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let s of offres">
+            <td>{{s.name}}</td>
+            <td>{{s.description}}</td>
+            <td>{{s.quantite}}</td>
+            <td>{{s.categorie}}</td>
+            <td><a class="btn btn-success" (click)="onpropose(s)">proposer</a></td>
+            <td><a class="btn btn-danger" (click)="onlistpropo(s)">proposition</a></td>
+          </tr>
 
-          <th></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let s of offres">
-          <td>{{s.name}}</td>
-          <td>{{s.description}}</td>
-          <td>{{s.quantite}}</td>
-          <td>{{s.categorie}}</td>
-          <td><a class="btn btn-danger" (click)="onDelete(s.id_offre)">delete</a></td>
-        </tr>
-
-        </tbody>
-        <tfoot>
-        <tr>
-          <th>Name</th>
-          <th>description</th>
-          <th>quantite</th>
-          <th>categorie</th>
-        </tr>
-        </tfoot>
-      </table>
-    </div>
-    <!-- /.box-body -->
-    <div class="col-md-6" id="child-right">
-      <!-- general form elements -->
-      <br><br><br><br>
-      <div class="box box-primary">
-
-        <!-- /.box-header -->
-        <!-- form start -->
-        <form role="form" #f="ngForm" (ngSubmit) ="onsaveoffre(f.value)">
-          <div class="box-body">
-            <div class="form-group">
-              <label class="control-label"> name</label>
-              <input type="text" class="form-control" type="text" name="name" [(ngModel)]="offres.name">
-            </div>
-            <div class="form-group">
-              <label class="control-label"> description</label>
-              <input class="form-control" type="text" name="description" [(ngModel)]="offres.description">
-            </div>
-            <div class="form-group">
-              <label class="control-label"> quantite</label>
-              <input type="text" class="form-control" type="number" name="quantite" [(ngModel)]="offres.quantite">
-            </div>
-            <label>Choisissez une categorie</label>
-            <select  [(ngModel)]="categorie" name="categorie" (change)="selected()">
-              <option *ngFor="let food of equipes" [value]="food.value"  >
-                {{food.viewValue}}
-              </option>
-            </select>
-
-          </div>
-          <!-- /.box-body -->
-
-          <div class="box-footer">
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </div>
-        </form>
+          </tbody>
+          <tfoot>
+          <tr>
+            <th>Name</th>
+            <th>description</th>
+            <th>quantite</th>
+            <th>categorie</th>
+            <th>proposer</th>
+            <th>proposition</th>
+          </tr>
+          </tfoot>
+        </table>
       </div>
+      <!-- /.box-body -->
+      <div class="col-md-6" id="child-right">
+        <!-- general form elements -->
+
+      </div>
+
       <!-- /.box -->
     </div>
+    <!-- /.col -->
+    <!-- /.row -->
+
+
+
   </div>
-
-  <!-- /.box -->
-</div>
-<!-- /.col -->
-<!-- /.row -->
-
-
-
 
 
 

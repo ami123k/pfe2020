@@ -1,3 +1,4 @@
+<p-scrollPanel [style]="{width: '100%', height: '1200px'}" styleClass="custom">
 <!-- Parallax 2 start -->
 <section class="parallax parallax2">
   <div class="parallax-overlay"></div>
@@ -19,13 +20,13 @@
     <div class="row">
       <div class="col-md-12 heading">
         <span class="title-icon float-left"><i class="fa fa-cogs"></i></span>
-        <h2 class="title">tous les offres<span class="title-desc">A Quality Experience Team with 4 years
+        <h2 class="title">tous les Collaborateurs<span class="title-desc">A Quality Experience Team with 4 years
 						experience</span></h2>
       </div>
     </div><!-- Title row end -->
 
     <div class="row">
-      <div class="col-md-3 col-sm-3 wow fadeInDown" data-wow-delay=".5s">
+      <div class="col-md-3 col-sm-3 wow fadeInDown" data-wow-delay=".3s">
         <div class="service-content text-center">
           <span class="service-icon icon-pentagon" (click)="materiel()" ><i class="fa fa-tachometer"></i></span>
           <h3>Offre Materiel</h3>
@@ -34,7 +35,7 @@
       </div>
       <!--/ End first service -->
 
-      <div class="col-md-3 col-sm-3 wow fadeInDown" data-wow-delay=".8s">
+      <div class="col-md-3 col-sm-3 wow fadeInDown" data-wow-delay=".5s">
         <div class="service-content text-center">
           <span class="service-icon icon-pentagon"(click)="fourniture()"><i class="fa fa-android"></i></span>
           <h3>Offre Fourniture</h3>
@@ -73,7 +74,7 @@
 
   <!-- Blog details page start -->
   <section id="main-container">
-    <div class="container">
+    <div class="container" id="parent">
       <div class="row">
 
         <!-- Blog start -->
@@ -81,73 +82,80 @@
 
 
 
-          <div class="col-md-6" *ngFor="let s of t1"   >
 
 
-            <p-card  header={{s.name_entreprise}} subheader="{{s.categories}}" [style]="{width: '250px'}" styleClass="ui-card-shadow" >
-              <p-header>
-                <img src="http://localhost:8080/files/{{s.type}}" style="width:250px;height:150px">
-              </p-header>
+          <div class="row" id="child-left">
+            <div class="col-md-6 col-sm-6" *ngFor="let s of t1" >
+              <div class="team team-list wow slideInLeft"  >
+                <div class="img-hexagon">
+                  <img src="http://localhost:8080/files/{{s.type}}"  alt="">
+                  <span class="img-top"></span>
+                  <span class="img-bottom"></span>
+                </div>
 
-              <p-footer>
-                <button pButton type="button" label="offre pour la categorie  {{s.categories}}" icon="pi pi-check" style="margin-right: .25em" (click)="findoffrebycategorie(s.categories)"></button>
-                <button pButton type="button" label="details" icon="pi pi-times" class="ui-button-secondary"></button>
-              </p-footer>
-            </p-card>
-            <br><br>
+                <div class="team-content">
+
+                  <h3>{{s.name_entreprise}}</h3>
+                  <p>{{s.categories}}</p>
+                  <button pButton type="button" label="offre pour la categorie  {{s.categories}}" icon="pi pi-check" style="margin-right: .25em" (click)="findoffrebycategorie(s.categories)"></button>
+                  <div class="team-social">
+                    <a class="fb" href="#"><i class="fa fa-facebook"></i></a>
+                    <a class="twt" href="#"><i class="fa fa-twitter"></i></a>
+                    <a class="gplus" href="#"><i class="fa fa-google-plus"></i></a>
+                    <a class="linkdin" href="#"><i class="fa fa-linkedin"></i></a>
+                    <a class="dribble" href="#"><i class="fa fa-dribbble"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--/ Team 1 end -->
+
+            <!--/ Team 2 end -->
           </div>
+
+
 
         </div>
         <!--/ Content col end -->
 
         <!-- sidebar start -->
-        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12" id="child-right">
 
           <div class="sidebar sidebar-right">
-
-            <!-- Blog search start -->
-            <div class="widget widget-search">
-              <h3 class="widget-title">Search</h3>
-              <div id="search">
-                <input class="form-control form-control-lg" placeholder="search" type="search">
-              </div>
-            </div><!-- Blog search end -->
 
             <!-- Tab widget start-->
             <div class="widget widget-tab">
               <ul class="nav nav-tabs">
               </ul>
-              <p-scrollPanel [style]="{width: '100%', height: '200px'}" styleClass="custom">
-                <div class="tab-content">
-                  <ul class="posts-list list-unstyled clearfix">
 
-                    <li *ngFor="let s of offres">
-                      <div class="posts-thumb float-left">
-                        <a href="/data">
-                          <img alt="img" src="assets/dist/img/offre.jpg">
-                        </a>
-                      </div>
-                      <div class="post-content">
-                        <h4 class="entry-title">
-                          <a href="#">{{s.name}}</a>
-                        </h4>
-                        <p class="post-meta">
-
-                          <span>quantite: {{s.quantite}}</span><br>
-                          <span class="post-meta-date"> <i class="fa fa-clock-o"></i>categorie:  {{s.categorie}}<br>
-                          </span>
-                        </p>
-                      </div>
-                      <div class="clearfix"></div>
-                    </li><!-- 3rd post end-->
-                  </ul>
-
-
-                </div><!-- Tab content end -->
-              </p-scrollPanel>
             </div><!-- Tab widget end-->
+            <label class="control-label"> inserrer votre patente</label>
+            <div class="tab-pane active" id="tab1">
+              <div style="text-align:center">
+                <div>
+                  <webcam [height]="400" [width]="400" [trigger]="triggerObservable" (imageCapture)="handleImage($event)" *ngIf="showWebcam"
+                          [allowCameraSwitch]="allowCameraSwitch" [switchCamera]="nextWebcamObservable" [videoOptions]="videoOptions" (cameraSwitched)="cameraWasSwitched($event)"
+                          (initError)="handleInitError($event)"></webcam>
+                  <br/>
+
+                  <div class="actionBtn" (click)="showNextWebcam(true);" title="Switch Camera">🔁</div>
+                  <div class="actionBtn" (click)="triggerSnapshot();" title="Take Picture">📸</div>
+                </div>
+              </div>
+              <h4 *ngIf="errors.length > 0">Messages:</h4>
+              <ul *ngFor="let error of errors">
+                <li>{{error | json}}</li>
+              </ul>
+
+
+
+
+
+            </div>
             <div class="widget">
               <div >
+                <label class="control-label"> inserrer votre logo</label>
+<br>
 
                 <div class="progress">
                   <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
@@ -159,11 +167,13 @@
                   <input type="file" (change)="selectFile($event)">
                 </label>
 
-
-
                 <div class="form-group" >
+                  <label class="control-label"> description</label>
+                  <input type="text" class="form-control" name="description" [(ngModel)]="description">
+
+<br>
                   <label class="control-label"> name</label>
-                  <input type="text" class="form-control" type="text" name="name_entreprise" [(ngModel)]="name">
+                  <input type="text" class="form-control"  name="name_entreprise" [(ngModel)]="name">
                 </div>
                 <label>Choisissez une categorie</label>
                 <select  [(ngModel)]="categorie" name="categorie" (change)="selected()">
@@ -172,8 +182,10 @@
                   </option>
                 </select>
                 <br><br>
+
                 <button class="btn btn-success" [disabled]="!selectedFiles" (click)="upload()">Upload</button>
               </div>
+
             </div><!-- Text widget end -->
 
 
@@ -206,3 +218,5 @@
 
   <div class="gap-40"></div>
 </div>
+
+</p-scrollPanel>
