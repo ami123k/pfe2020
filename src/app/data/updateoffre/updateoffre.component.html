@@ -1,0 +1,97 @@
+<div class="container">
+
+  <div class="panel panel-default" id="parent">
+
+    <div class="panel-body" *ngIf="currentprod" id ="child-left">
+      <form #f="ngForm" (ngSubmit) ="onupdateprod(f.value)">
+        <div class="form-group">
+
+          <label class="control-label"> Name</label>
+          <input class="form-control" type="text" name="name" ngModel [(ngModel)]="currentprod.name">
+        </div>
+        <div class="form-group">
+          <label class="control-label"> Description</label>
+          <input class="form-control" type="text" name="description" ngModel [(ngModel)]="currentprod.description">
+        </div>
+        <div class="form-group">
+          <label class="control-label"> Quantite</label>
+          <input class="form-control" type="number" name="quantite" ngModel [(ngModel)]="currentprod.quantite">
+        </div>
+        <label>Choisissez une categorie</label>
+        <select  [(ngModel)]="currentprod.categorie" name="categorie" (change)="selected()">
+          <option *ngFor="let food of equipe" [value]="food.value"  >
+            {{food.viewValue}}
+          </option>
+        </select>
+        <button class="btn btn-success" type="submit" >update</button>
+          <br> <br>
+      </form>
+    </div>
+    <div [style]="{width: '300px'}" id="child-right" >
+    <br><br><br>
+      <carousel >
+        <slide *ngFor="let s of t1">
+          <img src="http://localhost:8080/files/{{s.type}}"  alt="first slide" style="display: block; width:300px;height:300px">
+          <div class="carousel-caption d-none d-md-block">
+            <h3>{{s.categories}}</h3>
+            <p>{{s.name_entreprise}}</p>
+          </div>
+        </slide>
+      </carousel>
+    </div>
+  </div>
+</div>
+
+<!-- Testimonial start-->
+<div class="testimonial parallax parallax3">
+  <div class="parallax-overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div id="testimonial-carousel" class="owl-carousel owl-theme text-center testimonial-slide">
+        <div class="item">
+          <div class="testimonial-thumb">
+            <img src="images/team/testimonial1.jpg" alt="testimonial">
+          </div>
+          <div class="testimonial-content">
+            <p class="testimonial-text">
+              Lorem Ipsum as their default model text, and a search for â€˜lorem ipsumâ€™ will uncover many web sites
+              still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes
+              on purpose. Lorem Ipsum is that it as opposed to using.
+            </p>
+            <h3 class="name">Sarah Arevik<span>Chief Executive</span></h3>
+          </div>
+        </div>
+        <div class="item">
+          <div class="testimonial-thumb">
+            <img src="images/team/testimonial2.jpg" alt="testimonial">
+          </div>
+          <div class="testimonial-content">
+            <p class="testimonial-text">
+              Lorem Ipsum as their default model text, and a search for â€˜lorem ipsumâ€™ will uncover many web sites
+              still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes
+              on purpose. Lorem Ipsum is that it as opposed to using.
+            </p>
+            <h3 class="name">Narek Bedros<span>Sr. Manager</span></h3>
+          </div>
+        </div>
+        <div class="item">
+          <div class="testimonial-thumb">
+            <img src="images/team/testimonial3.jpg" alt="testimonial">
+          </div>
+          <div class="testimonial-content">
+            <p class="testimonial-text">
+              Lorem Ipsum as their default model text, and a search for â€˜lorem ipsumâ€™ will uncover many web sites
+              still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes
+              on purpose. Lorem Ipsum is that it as opposed to using.
+            </p>
+            <h3 class="name">Taline Lucine<span>Sales Manager</span></h3>
+          </div>
+        </div>
+      </div>
+      <!--/ Testimonial carousel end-->
+    </div>
+    <!--/ Row end-->
+  </div>
+  <!--/  Container end-->
+</div>
+<!--/ Testimonial end-->

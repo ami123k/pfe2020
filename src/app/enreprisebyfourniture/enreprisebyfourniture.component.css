@@ -1,0 +1,12 @@
+:host {
+  display: block;
+  background-color: white;
+}
+
+
+.home-container {
+  color: var(--col-pale);
+  height: 100vh;
+  font-family: "roboto-reg";
+  overflow-y: hidden;
+}

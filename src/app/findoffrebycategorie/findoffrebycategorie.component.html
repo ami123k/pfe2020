@@ -1,0 +1,29 @@
+<table #dataTable class="table table-bordered table-striped" align="center" style="width:85% ">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>description</th>
+    <th>quantite</th>
+    <th>categorie</th>
+    <th></th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let s of currentprod">
+    <td>{{s.name}}</td>
+    <td>{{s.description}}</td>
+    <td>{{s.quantite}}</td>
+    <td>{{s.categorie}}</td>
+  </tr>
+
+  </tbody>
+  <tfoot>
+  <tr>
+    <th>Name</th>
+    <th>description</th>
+    <th>quantite</th>
+    <th>categorie</th>
+  </tr>
+  </tfoot>
+</table>

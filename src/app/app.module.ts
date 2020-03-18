@@ -1,6 +1,3 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -16,38 +13,87 @@ import { DashbordComponent } from './dashbord/dashbord.component';
 import { BoardUserComponent } from './board-user/board-user.component';
 import { BoardAdminComponent } from './board-admin/board-admin.component';
 import { BoardModeratorComponent } from './board-moderator/board-moderator.component';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {ErrorInterceptor} from './_helpers/error.interceptor';
-import {httpInterceptorProviders} from './_helpers/authinterceptor';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { ErrorInterceptor } from './_helpers/error.interceptor';
+import { httpInterceptorProviders } from './_helpers/authinterceptor';
 import { DatatableComponent } from './data/datatable/datatable.component';
+import { UpdateoffreComponent } from './data/updateoffre/updateoffre.component';
+import { EntrepriseComponent } from './entreprise/entreprise.component';
+import { CardModule } from 'primeng/card';
+import { TabViewModule } from 'primeng/tabview';
+import { ButtonModule } from 'primeng/button';
+import { NgModule } from '@angular/core';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {BrowserModule} from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {GalleriaModule} from 'primeng/galleria';
+import { FindoffrebycategorieComponent } from './findoffrebycategorie/findoffrebycategorie.component';
+import {ScrollPanelModule} from 'primeng/scrollpanel';
+import { CarouselModule } from 'ngx-bootstrap';
+import { CameraComponent } from './camera/camera.component';
+import {WebcamModule} from 'ngx-webcam';
+import { PropositionComponent } from './proposition/proposition.component';
+import { TesttemplateComponent } from './testtemplate/testtemplate.component';
+import { OffreformaterielComponent } from './offreformateriel/offreformateriel.component';
+import { OffreforinformatiqueComponent } from './offreforinformatique/offreforinformatique.component';
+import { OffreforfournitureComponent } from './offreforfourniture/offreforfourniture.component';
+import { OffreforeducationComponent } from './offreforeducation/offreforeducation.component';
+import { EntreprisebyeducationComponent } from './entreprisebyeducation/entreprisebyeducation.component';
+import { EnreprisebyfournitureComponent } from './enreprisebyfourniture/enreprisebyfourniture.component';
+import { EnreprisebyinformatiqueComponent } from './enreprisebyinformatique/enreprisebyinformatique.component';
+import { EnreprisebymaterielComponent } from './enreprisebymateriel/enreprisebymateriel.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    FooterComponent,
     MenuComponent,
+    FooterComponent,
     SettingComponent,
+    DashbordComponent,
+    PagesComponent,
+    DatatableComponent,
     LoginComponent,
     RegisterComponent,
-    PagesComponent,
-    ProfileComponent,
     HomeComponent,
-    DashbordComponent,
     BoardUserComponent,
     BoardAdminComponent,
     BoardModeratorComponent,
-    DatatableComponent
+    ProfileComponent,
+    UpdateoffreComponent,
+    EntrepriseComponent,
+    FindoffrebycategorieComponent,
+    CameraComponent,
+    PropositionComponent,
+    TesttemplateComponent,
+    OffreformaterielComponent,
+    OffreforinformatiqueComponent,
+    OffreforfournitureComponent,
+    OffreforeducationComponent,
+    EntreprisebyeducationComponent,
+    EnreprisebyfournitureComponent,
+    EnreprisebyinformatiqueComponent,
+    EnreprisebymaterielComponent
   ],
   imports: [
     BrowserModule,
+    AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    AppRoutingModule
+    CardModule,
+    TabViewModule,
+    ButtonModule,
+    BrowserAnimationsModule,
+    GalleriaModule,
+    ScrollPanelModule,
+    WebcamModule,
+    CarouselModule.forRoot()
+
   ],
-  providers: [httpInterceptorProviders, { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }, ],
+  providers: [httpInterceptorProviders, { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+

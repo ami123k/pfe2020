@@ -68,6 +68,7 @@
             <li class="footer"><a href="#">View all</a></li>
           </ul>
         </li>
+
         <!-- Tasks: style can be found in dropdown.less -->
         <li class="dropdown tasks-menu">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -107,21 +108,24 @@
             <img alt="User Image" class="user-image" src="assets/dist/img/user2-160x160.jpg">
             <span class="hidden-xs">Alexander Pierce</span>
           </a>
-          <ul class="dropdown-menu">
+
+
+
+          <ul class="dropdown-menu" *ngIf="isLoggedIn">
             <!-- User image -->
             <li class="user-header">
               <img alt="User Image" class="img-circle" src="assets/dist/img/user2-160x160.jpg">
 
               <p>
-                Alexander Pierce - Web Developer
-                <small>Member since Nov. 2012</small>
+                {{ username }}
+                <small>{{ roles }}</small>
               </p>
             </li>
             <!-- Menu Body -->
             <li class="user-body">
               <div class="row">
                 <div class="col-xs-4 text-center">
-                  <a href="#">Followers</a>
+                  <a href class="nav-link" (click)="logout()">followers</a>
                 </div>
                 <div class="col-xs-4 text-center">
                   <a href="#">Sales</a>
@@ -138,7 +142,7 @@
                 <a class="btn btn-default btn-flat" href="#">Profile</a>
               </div>
               <div class="pull-right">
-                <a class="btn btn-default btn-flat" href="#">Sign out</a>
+                <a class="btn btn-default btn-flat" (click)="logout()">Sign out</a>
               </div>
             </li>
           </ul>
@@ -151,3 +155,4 @@
     </div>
   </nav>
 </header>
+
