@@ -86,7 +86,7 @@ export class EntrepriseComponent implements OnInit {
       .then((mediaDevices: MediaDeviceInfo[]) => {
         this.multipleWebcamsAvailable = mediaDevices && mediaDevices.length > 1;
       });
-  }
+ this. afficheroffre(); }
   afficheroffre() {
     this.catservice.getresouce(this.catservice.host + 'offres')
       .subscribe(res => {

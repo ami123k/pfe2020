@@ -129,64 +129,40 @@
               </ul>
 
             </div><!-- Tab widget end-->
-            <label class="control-label"> inserrer votre patente</label>
-            <div class="tab-pane active" id="tab1">
-              <div style="text-align:center">
-                <div>
-                  <webcam [height]="400" [width]="400" [trigger]="triggerObservable" (imageCapture)="handleImage($event)" *ngIf="showWebcam"
-                          [allowCameraSwitch]="allowCameraSwitch" [switchCamera]="nextWebcamObservable" [videoOptions]="videoOptions" (cameraSwitched)="cameraWasSwitched($event)"
-                          (initError)="handleInitError($event)"></webcam>
-                  <br/>
 
-                  <div class="actionBtn" (click)="showNextWebcam(true);" title="Switch Camera">🔁</div>
-                  <div class="actionBtn" (click)="triggerSnapshot();" title="Take Picture">📸</div>
-                </div>
-              </div>
-              <h4 *ngIf="errors.length > 0">Messages:</h4>
-              <ul *ngFor="let error of errors">
-                <li>{{error | json}}</li>
-              </ul>
+            <!-- Tab widget start-->
+            <div class="widget widget-tab">
+
+              list des offres
+              <p-scrollPanel [style]="{width: '100%', height: '200px'}" styleClass="custom">
+                <div class="tab-content">
+                  <ul class="posts-list list-unstyled clearfix">
+
+                    <li *ngFor="let s of offres">
+                      <div class="posts-thumb float-left">
+                        <a href="/data">
+                          <img alt="img" src="assets/dist/img/offre.jpg">
+                        </a>
+                      </div>
+                      <div class="post-content">
+                        <h4 class="entry-title">
+                          <a href="#">{{s.name}}</a>
+                        </h4>
+                        <p class="post-meta">
+
+                          <span>quantite: {{s.quantite}}</span><br>
+                          <span class="post-meta-date"> <i class="fa fa-clock-o"></i>categorie:  {{s.categorie}}<br>
+                          </span>
+                        </p>
+                      </div>
+                      <div class="clearfix"></div>
+                    </li><!-- 3rd post end-->
+                  </ul>
 
 
-
-
-
-            </div>
-            <div class="widget">
-              <div >
-                <label class="control-label"> inserrer votre logo</label>
-<br>
-
-                <div class="progress">
-                  <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
-                       aria-valuemin="0" aria-valuemax="100" [ngStyle]="{width:progress.percentage+'%'}">
-                    {{progress.percentage}}%</div>
-                </div>
-
-                <label class="btn btn-default">
-                  <input type="file" (change)="selectFile($event)">
-                </label>
-
-                <div class="form-group" >
-                  <label class="control-label"> description</label>
-                  <input type="text" class="form-control" name="description" [(ngModel)]="description">
-
-<br>
-                  <label class="control-label"> name</label>
-                  <input type="text" class="form-control"  name="name_entreprise" [(ngModel)]="name">
-                </div>
-                <label>Choisissez une categorie</label>
-                <select  [(ngModel)]="categorie" name="categorie" (change)="selected()">
-                  <option *ngFor="let food of equipes" [value]="food.value"  >
-                    {{food.viewValue}}
-                  </option>
-                </select>
-                <br><br>
-
-                <button class="btn btn-success" [disabled]="!selectedFiles" (click)="upload()">Upload</button>
-              </div>
-
-            </div><!-- Text widget end -->
+                </div><!-- Tab content end -->
+              </p-scrollPanel>
+            </div><!-- Tab widget end-->
 
 
             <!-- Blog category start -->

@@ -23,6 +23,7 @@ import {EnreprisebyfournitureComponent} from './enreprisebyfourniture/enrepriseb
 import {EnreprisebyinformatiqueComponent} from './enreprisebyinformatique/enreprisebyinformatique.component';
 import {EnreprisebymaterielComponent} from './enreprisebymateriel/enreprisebymateriel.component';
 import {OffreFournisseurComponent} from './offre-fournisseur/offre-fournisseur.component';
+import {AjouterentrepriseComponent} from './ajouterentreprise/ajouterentreprise.component';
 
 
 const routes: Routes = [
@@ -49,6 +50,7 @@ const routes: Routes = [
   { path: 'entreprisemateriel', component: EnreprisebymaterielComponent },
   { path: 'entrepriseinformatique', component: EnreprisebyinformatiqueComponent },
   { path: 'offrefournisseur', component: OffreFournisseurComponent },
+  { path: 'ajouterfournisseur', component: AjouterentrepriseComponent },
   { path: '', redirectTo: 'login', pathMatch: 'full' }
 ];
 

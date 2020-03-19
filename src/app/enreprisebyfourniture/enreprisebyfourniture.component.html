@@ -146,35 +146,7 @@
                 </div><!-- Tab content end -->
               </p-scrollPanel>
             </div><!-- Tab widget end-->
-            <div class="widget">
-              <div >
 
-                <div class="progress">
-                  <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
-                       aria-valuemin="0" aria-valuemax="100" [ngStyle]="{width:progress.percentage+'%'}">
-                    {{progress.percentage}}%</div>
-                </div>
-
-                <label class="btn btn-default">
-                  <input type="file" (change)="selectFile($event)">
-                </label>
-
-
-
-                <div class="form-group" >
-                  <label class="control-label"> name</label>
-                  <input type="text" class="form-control" type="text" name="name_entreprise" [(ngModel)]="name">
-                </div>
-                <label>Choisissez une categorie</label>
-                <select  [(ngModel)]="categorie" name="categorie" (change)="selected()">
-                  <option *ngFor="let food of equipes" [value]="food.value"  >
-                    {{food.viewValue}}
-                  </option>
-                </select>
-                <br><br>
-                <button class="btn btn-success" [disabled]="!selectedFiles" (click)="upload()">Upload</button>
-              </div>
-            </div><!-- Text widget end -->
 
 
             <!-- Blog category start -->
