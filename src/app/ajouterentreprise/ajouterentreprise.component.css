@@ -1,0 +1,29 @@
+@import "~bootstrap/dist/css/bootstrap.css";
+@import "~datatables.net-bs4/css/dataTables.bootstrap4.css";
+#parent{
+  padding: 0 auto;
+  width: 1300px;
+}
+#child-left{
+  float: left;
+  width: 600px;
+}
+#child-right{
+  float: right;
+  width: 700px;
+}
+
+.custom .ui-scrollpanel-wrapper {
+  border-right: 9px solid #f4f4f4;
+}
+
+.custom .ui-scrollpanel-bar {
+  background-color: #1976d2;
+  opacity: 1;
+  transition: background-color .3s;
+}
+
+.custom .ui-scrollpanel-bar:hover {
+  background-color: #135ba1;
+}
+

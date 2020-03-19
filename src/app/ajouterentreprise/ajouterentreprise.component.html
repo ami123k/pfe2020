@@ -1,0 +1,124 @@
+<section class="parallax parallax2">
+  <div class="parallax-overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <h2>List des entreprises</h2>
+        <h3>creer votre entreprise et postuler</h3>
+        <p>
+          <a href="/upload" class="btn btn-primary white">tous les offres</a>
+          <a href="#" class="btn btn-primary solid" >Get In Touch</a>
+        </p>
+      </div>
+    </div>
+  </div><!-- Container end -->
+</section><!-- Parallax 2 end -->
+<section id="service" class="service angle">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 heading">
+        <span class="title-icon float-left"><i class="fa fa-cogs"></i></span>
+        <h2 class="title">tous les Collaborateurs<span class="title-desc">A Quality Experience Team with 4 years
+						experience</span></h2>
+      </div>
+    </div><!-- Title row end -->
+
+    <div class="row">
+      <div class="col-md-3 col-sm-3 wow fadeInDown" data-wow-delay=".3s">
+        <div class="service-content text-center">
+          <span class="service-icon icon-pentagon" (click)="materiel()" ><i class="fa fa-tachometer"></i></span>
+          <h3>Offre Materiel</h3>
+          <p>maintenance ,Immeuble ,Club esprit</p>
+        </div>
+      </div>
+      <!--/ End first service -->
+
+      <div class="col-md-3 col-sm-3 wow fadeInDown" data-wow-delay=".5s">
+        <div class="service-content text-center">
+          <span class="service-icon icon-pentagon"(click)="fourniture()"><i class="fa fa-android"></i></span>
+          <h3>Offre Fourniture</h3>
+          <p>fourniture resto,fourniture foyer,fourniture club,fourniture prof</p>
+        </div>
+      </div>
+      <!--/ End Second service -->
+
+      <div class="col-md-3 col-sm-3 wow fadeInDown" data-wow-delay="1.1s">
+        <div class="service-content text-center">
+          <span class="service-icon icon-pentagon" (click)="education()"><i class="fa fa-shopping-cart"></i></span>
+          <h3>Offre Education</h3>
+          <p>table,tableau,chaise,projecteur,stylos,feuille</p>
+        </div>
+      </div>
+      <!--/ End Third service -->
+
+      <div class="col-md-3 col-sm-3 wow fadeInDown" data-wow-delay="1.4s">
+        <div class="service-content text-center">
+          <span class="service-icon icon-pentagon" (click)="informatique()" ><i class="fa fa-lightbulb-o"></i></span>
+          <h3>Offre informatique</h3>
+          <p>ordinateur,cables,imprimentes,matieriel mobiles,serveurs</p>
+        </div>
+      </div>
+      <!--/ End 4th service -->
+    </div><!-- Content row end -->
+  </div>
+  <!--/ Container end -->
+</section>
+<label class="control-label"> inserrer votre patente</label>
+<div class="tab-pane active" id="parent">
+  <div style="text-align:center" id="child-left">
+    <div>
+      <webcam [height]="400" [width]="400" [trigger]="triggerObservable" (imageCapture)="handleImage($event)" *ngIf="showWebcam"
+              [allowCameraSwitch]="allowCameraSwitch" [switchCamera]="nextWebcamObservable" [videoOptions]="videoOptions" (cameraSwitched)="cameraWasSwitched($event)"
+              (initError)="handleInitError($event)"></webcam>
+      <br/>
+
+      <div class="actionBtn" (click)="showNextWebcam(true);" title="Switch Camera">🔁</div>
+      <div class="actionBtn" (click)="triggerSnapshot();" title="Take Picture">📸</div>
+    </div>
+  </div>
+  <h4 *ngIf="errors.length > 0">Messages:</h4>
+  <ul *ngFor="let error of errors">
+    <li>{{error | json}}</li>
+  </ul>
+
+
+  <div class="snapshot" *ngIf="webcamImage" id="child-right">
+    <img [src]="webcamImage.imageAsDataUrl" width="450px" height="300px"/>
+  </div>
+
+
+</div>
+<br> <br> <br><br> <br> <br><br> <br> <br><br> <br> <br><br> <br> <br><br> <br> <br><br> <br>
+<div class="widget">
+    <label class="control-label"> inserrer votre logo</label>
+    <br>
+
+    <div class="progress">
+      <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
+           aria-valuemin="0" aria-valuemax="100" [ngStyle]="{width:progress.percentage+'%'}">
+        {{progress.percentage}}%</div>
+    </div>
+
+    <label class="btn btn-default">
+      <input type="file" (change)="selectFile($event)">
+    </label>
+
+    <div class="form-group" >
+      <label class="control-label"> description</label>
+      <input type="text" class="form-control" name="description" [(ngModel)]="description">
+
+      <br>
+      <label class="control-label"> name</label>
+      <input type="text" class="form-control"  name="name_entreprise" [(ngModel)]="name">
+    </div>
+    <label>Choisissez une categorie</label>
+    <select  [(ngModel)]="categorie" name="categorie" (change)="selected()">
+      <option *ngFor="let food of equipes" [value]="food.value"  >
+        {{food.viewValue}}
+      </option>
+    </select>
+    <br><br>
+
+    <button class="btn btn-success" [disabled]="!selectedFiles" (click)="upload()">Upload</button>
+
+</div><!-- Text widget end -->
