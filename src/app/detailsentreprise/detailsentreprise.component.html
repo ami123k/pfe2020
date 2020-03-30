@@ -1,0 +1,201 @@
+<!-- Blog details page start -->
+<section class="parallax parallax2">
+  <div class="parallax-overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <h2>details  {{currentprod.name_entreprise}}</h2>
+        <h3>veuillez Proposer</h3>
+        <p>
+          <a href="/data" class="btn btn-primary white">tous les offes</a>
+          <a href="/upload" class="btn btn-primary solid">tous les entreprises</a>
+        </p>
+      </div>
+    </div>
+  </div><!-- Container end -->
+</section><!-- Parallax 2 end -->
+<section id="main-container">
+  <div class="container">
+    <div class="row">
+
+      <!-- Blog start -->
+      <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+
+        <!-- 1st post start -->
+        <div class="post">
+
+          <!-- post image start -->
+          <div class="post-image-wrapper">
+
+            <img src="http://localhost:8080/files/{{currentprod.logo}}"   class="img-fluid" alt="" />
+            <span class="blog-date"><a href="#"> {{currentprod.categories}}</a></span>
+          </div><!-- post image end -->
+          <div class="post-header clearfix">
+            <h2 class="post-title">
+              <a href="">{{currentprod.name_entreprise}}</a>
+            </h2>
+            <div class="post-meta">
+              <img src="http://localhost:8080/files/{{currentprod.type}}" height="40" width="50"  class="img-fluid" alt="" />
+              <div class="float-right">
+
+              </div>
+
+            </div><!-- post meta end -->
+          </div><!-- post heading end -->
+
+        </div><!-- 1st post end -->
+
+
+
+      </div>
+      <!--/ Content col end -->
+
+      <!-- sidebar start -->
+      <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+
+        <div class="sidebar sidebar-right">
+
+          <!-- Blog search start -->
+
+          <!-- Tab widget start-->
+          <div class="widget widget-tab">
+            <ul class="nav nav-tabs">
+<label>list des entreprises</label>
+            </ul>
+
+            <div class="tab-content">
+              <p-scrollPanel [style]="{width: '100%', height: '350px'}" styleClass="custom">
+                <ul class="posts-list list-unstyled clearfix" *ngFor="let s of t1">
+                  <li>
+                  <div id="parent">
+                    <div class="posts-thumb float-left" id="child-left">
+                      <a href="#">
+                        <img src="http://localhost:8080/files/{{s.type}}" width="50" height="30" alt="">
+                      </a>
+                    </div>
+                    <div class="post-content" id="child-right">
+                      <h3>{{s.name_entreprise}}</h3>
+                      <p>{{s.categories}}</p>
+
+                    </div>
+                                      </div>
+                  </li><!-- First post end-->
+
+
+                </ul>
+              </p-scrollPanel>
+              <div class="tab-pane fade" id="recent-tab">
+                <ul class="posts-list list-unstyled clearfix">
+                  <li>
+                    <div class="posts-thumb float-left">
+                      <a href="#">
+                        <img alt="img" src="images/blog/blog3.jpg">
+                      </a>
+                    </div>
+                    <div class="post-content">
+                      <h4 class="entry-title"><a href="#">Bulgaria claims to find Europe's 'oldest town'</a>
+                      </h4>
+                      <p class="post-meta">
+                        <span class="post-meta-author">Posted by <a href="#"> Admin</a></span>
+                        <span class="post-meta-date"><a href="#"> <i class="fa fa-clock-o"></i> November 21</a>
+												</span>
+                      </p>
+                    </div>
+                    <div class="clearfix"></div>
+                  </li><!-- First post end-->
+                  <li>
+                    <div class="posts-thumb float-left">
+                      <a href="#">
+                        <img alt="img" src="images/blog/blog1.jpg">
+                      </a>
+                    </div>
+                    <div class="post-content">
+                      <h4 class="entry-title"><a href="#">Bulgaria claims to find Europe's 'oldest town'</a>
+                      </h4>
+                      <p class="post-meta">
+                        <span class="post-meta-author">Posted by <a href="#"> Admin</a></span>
+                        <span class="post-meta-date"><a href="#"> <i class="fa fa-clock-o"></i> October 19</a>
+												</span>
+                      </p>
+                    </div>
+                    <div class="clearfix"></div>
+                  </li><!-- 2nd post end-->
+                </ul>
+              </div><!-- Recent tabpan end -->
+
+              <div class="tab-pane fade" id="comments-tab">
+                <ul class="posts-list list-unstyled clearfix">
+                  <li>
+                    <div class="posts-avator float-left">
+                      <a href="#">
+                        <img alt="img" src="images/blog/avator1.png">
+                      </a>
+                    </div>
+                    <div class="post-content">
+                      <h4 class="entry-title"><a href="#">If you are going to use a passage of Lorem Ipsum</a>
+                      </h4>
+                      <p class="post-meta">
+                        <span class="post-meta-author">Posted by <a href="#"> John</a></span>
+                        <span class="post-meta-date"><a href="#"> <i class="fa fa-clock-o"></i> November 21</a>
+												</span>
+                      </p>
+                    </div>
+                    <div class="clearfix"></div>
+                  </li><!-- First post end-->
+                  <li>
+                    <div class="posts-avator float-left">
+                      <a href="#">
+                        <img alt="img" src="images/blog/avator2.jpg">
+                      </a>
+                    </div>
+                    <div class="post-content">
+                      <h4 class="entry-title"><a href="#">you need to be sure there isn’t anything embarra</a>
+                      </h4>
+                      <p class="post-meta">
+                        <span class="post-meta-author">Posted by <a href="#"> Tina</a></span>
+                        <span class="post-meta-date"><a href="#"> <i class="fa fa-clock-o"></i> October 18</a>
+												</span>
+                      </p>
+                    </div>
+                    <div class="clearfix"></div>
+                  </li><!-- 2nd post end-->
+                </ul>
+              </div><!-- Comment tabpan end -->
+            </div><!-- Tab content end -->
+          </div><!-- Tab widget end-->
+
+          <!-- Blog category start -->
+          <div class="widget widget-categories">
+            <h3 class="widget-title">Blog Categories</h3>
+            <ul class="category-list clearfix">
+              <li><a href="#">Objects</a><span class="posts-count"> (19)</span></li>
+              <li><a href="#">Technology</a><span class="posts-count"> (09)</span></li>
+              <li><a href="#">Photography</a><span class="posts-count"> (13)</span></li>
+              <li><a href="#">Fashion</a><span class="posts-count"> (10)</span></li>
+              <li><a href="#">Realtough</a><span class="posts-count"> (14)</span></li>
+              <li><a href="#">Architecture</a><span class="posts-count"> (11)</span></li>
+            </ul>
+          </div><!-- Blog category end -->
+
+          <!-- Blog tags start -->
+          <div class="widget widget-tags">
+            <h3 class="widget-title">Popular Tags</h3>
+            <ul class="list-unstyled clearfix">
+              <li><a href="#">iMac</a></li>
+              <li><a href="#">Black and Green</a></li>
+              <li><a href="#">Crative</a></li>
+              <li><a href="#">Momentum</a></li>
+              <li><a href="#">Business</a></li>
+              <li><a href="#">Cellular</a></li>
+              <li><a href="#">Niche</a></li>
+            </ul>
+          </div><!-- Blog tags end -->
+
+
+        </div><!-- sidebar end -->
+      </div>
+    </div>
+    <!--/ row end -->
+  </div>
+  <!--/ container end -->
+</section><!-- Blog details page end -->

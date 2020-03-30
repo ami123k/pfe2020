@@ -1,0 +1,108 @@
+<!-- Blog details page start -->
+<section class="parallax parallax2">
+  <div class="parallax-overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <h2>proposition</h2>
+        <h3>veuillez Proposer</h3>
+        <p>
+          <a href="/data" class="btn btn-primary white">tous les offes</a>
+          <a href="/upload" class="btn btn-primary solid">tous les entreprises</a>
+        </p>
+      </div>
+    </div>
+  </div><!-- Container end -->
+</section><!-- Parallax 2 end -->
+<section id="main-container">
+  <div class="container">
+    <div class="row">
+
+      <!-- Blog start -->
+      <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+
+        <!-- 1st post start -->
+        <div class="post">
+
+          <!-- post image start -->
+          <div class="post-image-wrapper">
+
+            <img src="http://localhost:8080/files/{{currentprod.name}}"   class="img-fluid" alt="" />
+          </div><!-- post image end -->
+          <div class="post-header clearfix">
+         {{currentprod.description}}
+
+{{name_entreprise}}
+
+          </div><!-- post heading end -->
+
+        </div><!-- 1st post end -->
+
+
+
+      </div>
+      <!--/ Content col end -->
+
+      <!-- sidebar start -->
+      <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+
+        <div class="sidebar sidebar-right">
+
+          <!-- Blog search start -->
+
+          <div class="widget widget-tab">
+
+            list des offres
+            <p-scrollPanel [style]="{width: '100%', height: '200px'}" styleClass="custom">
+              <div class="tab-content">
+                <ul class="posts-list list-unstyled clearfix">
+
+                  <li *ngFor="let s of offres">
+                    <div class="posts-thumb float-left" width="150px" height="120px">
+                      <a href="/data">
+                        <img alt="img" src="assets/dist/img/offre.jpg" width="150px" height="120px">
+                      </a>
+                    </div>
+                    <div class="post-content">
+                      <h4 class="entry-title">
+                        <a href="#">{{s.name}}</a>
+                      </h4>
+                      <p class="post-meta">
+
+                        <span>quantite: {{s.quantite}}</span><br>
+                        <span class="post-meta-date"> <i class="fa fa-clock-o"></i>categorie:  {{s.categorie}}<br>
+                          </span>
+                      </p>
+                    </div>
+                    <div class="clearfix"></div>
+                  </li><!-- 3rd post end-->
+                </ul>
+
+
+              </div><!-- Tab content end -->
+            </p-scrollPanel>
+          </div><!-- Tab widget end-->
+
+          <!-- Blog category start -->
+          <div class="widget widget-categories">
+            <h3 class="widget-title">Blog Categories</h3>
+            <ul class="category-list clearfix">
+              <li><a href="#">Objects</a><span class="posts-count"> (19)</span></li>
+              <li><a href="#">Technology</a><span class="posts-count"> (09)</span></li>
+              <li><a href="#">Photography</a><span class="posts-count"> (13)</span></li>
+              <li><a href="#">Fashion</a><span class="posts-count"> (10)</span></li>
+              <li><a href="#">Realtough</a><span class="posts-count"> (14)</span></li>
+              <li><a href="#">Architecture</a><span class="posts-count"> (11)</span></li>
+            </ul>
+          </div><!-- Blog category end -->
+
+          <!-- Blog tags start -->
+
+
+        </div><!-- sidebar end -->
+      </div>
+    </div>
+    <!--/ row end -->
+  </div>
+  <!--/ container end -->
+</section><!-- Blog details page end -->

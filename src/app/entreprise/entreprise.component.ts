@@ -14,6 +14,7 @@ import {ServiceOffreService} from '../service/service-offre.service';
 import {Offre} from '../model/offre';
 import {WebcamImage, WebcamInitError, WebcamUtil} from 'ngx-webcam';
 import {CameraService} from '../service/camera.service';
+import * as $ from 'jquery';
 @Component({
   selector: 'app-entreprise',
   templateUrl: './entreprise.component.html',
@@ -76,17 +77,36 @@ export class EntrepriseComponent implements OnInit {
   selectFile(event) {
     this.selectedFiles = event.target.files;
   }
-
+  dtOption: any = {};
   ngOnInit(): void {
     this.uploadService.getFiles().subscribe(e => {
-      this.t1 = e;
+      this.t1 = e._embedded.entreprises;
       console.log(this.t1);
     });
      WebcamUtil.getAvailableVideoInputs()
       .then((mediaDevices: MediaDeviceInfo[]) => {
         this.multipleWebcamsAvailable = mediaDevices && mediaDevices.length > 1;
       });
- this. afficheroffre(); }
+          this.afficheroffre();
+
+    this.dtOption = {
+      paging: true,
+      ordering: true,
+      info: true,
+      simple_numbers: true,
+      full: true
+    };
+    $(() => {
+      $('table.table-striped').DataTable(this.dtOption);
+    });
+
+  }
+
+  details(s) {
+    console.log(s);
+    const url = s._links.self.href;
+    this.router.navigateByUrl('details/' + btoa(url));
+  }
   afficheroffre() {
     this.catservice.getresouce(this.catservice.host + 'offres')
       .subscribe(res => {

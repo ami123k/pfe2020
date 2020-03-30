@@ -5,6 +5,7 @@ import {TokenStorageService} from '../auth/token-storage.service';
 
 
 const API_URL = 'http://localhost:8080/api/test/';
+const URL = 'http://localhost:8080/api/auth';
 const TOKEN_HEADER_KEY = 'Authorization';
 @Injectable({
   providedIn: 'root'
@@ -34,4 +35,9 @@ private req: HttpRequest<any>;
   getAdminBoard(): Observable<any> {
     return this.http.get(API_URL + 'admin', { responseType: 'text' });
   }
+
+  getusers(): Observable<any> {
+    return this.http.get(URL + '/userbyrole');
+  }
+
 }

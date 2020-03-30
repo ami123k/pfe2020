@@ -78,8 +78,7 @@ export class DatatableComponent implements OnInit {
   }
   onlistpropo(s) {
     console.log(s);
-    const url = s._links.self.href;
-    this.router.navigateByUrl('onlistpropo/' + btoa(url));
+    this.router.navigateByUrl('onlistpropo/' + btoa(s.id_offre));
   }
  /* onDelete(s) {
     const conf = confirm('etes vous sur');
@@ -93,16 +92,16 @@ export class DatatableComponent implements OnInit {
   }*/
 
   informatique() {
-    this.router.navigateByUrl('offreforinfo');
+    this.router.navigateByUrl('admininformatique');
   }
   fourniture() {
-    this.router.navigateByUrl('fourniture');
+    this.router.navigateByUrl('adminfourniture');
   }
   materiel() {
-    this.router.navigateByUrl('offreformat');
+    this.router.navigateByUrl('adminmateriel');
   }
   education() {
-    this.router.navigateByUrl('education');
+    this.router.navigateByUrl('admineducation');
   }
   tous() {
     this.router.navigateByUrl('data');
@@ -125,8 +124,7 @@ export class DatatableComponent implements OnInit {
 
   onpropose(s) {
     console.log(s);
-    const url = s._links.self.href;
-    this.router.navigateByUrl('camera/' + btoa(url));
+    this.router.navigateByUrl('camera/' + btoa(s.id_offre));
   }
 
 }

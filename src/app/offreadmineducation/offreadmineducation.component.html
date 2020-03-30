@@ -1,0 +1,167 @@
+<!-- Parallax 2 start -->
+<section class="parallax parallax2">
+  <div class="parallax-overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <h2>Offres D' Esprit</h2>
+        <h3>veuillez Proposer</h3>
+        <p>
+          <a href="/data" class="btn btn-primary white">tous les offes</a>
+          <a href="#" class="btn btn-primary solid">Get In Touch</a>
+        </p>
+      </div>
+    </div>
+  </div><!-- Container end -->
+</section><!-- Parallax 2 end -->
+<!-- Service box start -->
+<section id="service" class="service angle">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 heading">
+        <span class="title-icon float-left"><i class="fa fa-cogs"></i></span>
+        <h2 class="title">tous les offres<span class="title-desc">A Quality Experience Team with 4 years
+						experience</span></h2>
+      </div>
+    </div><!-- Title row end -->
+
+    <div class="row">
+      <div class="col-md-3 col-sm-3 wow fadeInDown" data-wow-delay=".5s">
+        <div class="service-content text-center">
+          <span class="service-icon icon-pentagon" (click)="materiel()"><i class="fa fa-tachometer"></i></span>
+          <h3>Offre Materiel</h3>
+          <p>maintenance ,Immeuble ,Club esprit</p>
+        </div>
+      </div>
+      <!--/ End first service -->
+
+      <div class="col-md-3 col-sm-3 wow fadeInDown" data-wow-delay=".8s">
+        <div class="service-content text-center">
+          <span class="service-icon icon-pentagon"(click)="fourniture()"><i class="fa fa-android"></i></span>
+          <h3>Offre Fourniture</h3>
+          <p>fourniture resto,fourniture foyer,fourniture club,fourniture prof</p>
+        </div>
+      </div>
+      <!--/ End Second service -->
+
+      <div class="col-md-3 col-sm-3 wow fadeInDown" data-wow-delay="1.1s">
+        <div class="service-content text-center">
+          <span class="service-icon icon-pentagon" (click)="education()"><i class="fa fa-shopping-cart"></i></span>
+          <h3>Offre Education</h3>
+          <p>table,tableau,chaise,projecteur,stylos,feuille</p>
+        </div>
+      </div>
+      <!--/ End Third service -->
+
+      <div class="col-md-3 col-sm-3 wow fadeInDown" data-wow-delay="1.4s">
+        <div class="service-content text-center">
+          <span class="service-icon icon-pentagon" (click)="informatique()"><i class="fa fa-lightbulb-o"></i></span>
+          <h3>Offre informatique</h3>
+          <p>ordinateur,cables,imprimentes,matieriel mobiles,serveurs</p>
+        </div>
+      </div>
+      <!--/ End 4th service -->
+    </div><!-- Content row end -->
+  </div>
+  <!--/ Container end -->
+</section>
+
+
+<div class="content-wrapper"   >
+  <!-- Content Header (Page header) -->
+  <div class="row">
+
+
+    <div class="box" id="parent">
+
+      <!-- /.box-header -->
+      <div class="box-body" id="child-left">
+        <table #dataTable  class="table table-bordered table-striped" align="center" style="width:85% ">
+          <thead>
+          <tr>
+            <th>Name</th>
+            <th>description</th>
+            <th>quantite</th>
+            <th>categorie</th>
+            <th>delete</th>
+            <th>update</th>
+            <th>proposition</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let s of offres">
+            <td>{{s.name}}</td>
+            <td>{{s.description}}</td>
+            <td>{{s.quantite}}</td>
+            <td>{{s.categorie}}</td>
+            <td><a class="btn btn-danger" (click)="onDelete(s.id_offre)"><div class="fa fa-fw fa-eraser"></div>delete</a></td>
+            <td><a class="btn btn-success" (click)="onEdit(s)"><div class="fa fa-fw fa-edit"></div> Edit</a></td>
+            <td><a class="btn btn-info" (click)="onlistpropo(s)"><div class="fa fa-fw fa-navicon"></div>proposition</a></td>
+          </tr>
+
+          </tbody>
+          <tfoot>
+          <tr>
+            <th>Name</th>
+            <th>description</th>
+            <th>quantite</th>
+            <th>categorie</th>
+            <th>delete</th>
+            <th>update</th>
+            <th>proposition</th>
+          </tr>
+          </tfoot>
+        </table>
+      </div>
+      <!-- /.box-body -->
+      <div class="col-md-6" id="child-right">
+        <!-- general form elements -->
+        <br><br><br><br><br><br><br><br>
+        <div class="box box-primary">
+
+          <!-- /.box-header -->
+          <!-- form start -->
+          <form role="form" #f="ngForm" (ngSubmit) ="onsaveoffre(f.value)">
+            <div class="box-body">
+              <div class="form-group">
+                <label class="control-label"> name</label>
+                <input type="text" class="form-control" type="text" name="name" [(ngModel)]="offres.name">
+              </div>
+              <div class="form-group">
+                <label class="control-label"> description</label>
+                <textarea class="form-control" type="text" name="description" [(ngModel)]="offres.description"></textarea>
+              </div>
+              <div class="form-group">
+                <label class="control-label"> quantite</label>
+                <input type="text" class="form-control" type="number" name="quantite" [(ngModel)]="offres.quantite">
+              </div>
+              <label>Choisissez une categorie</label>
+              <select  [(ngModel)]="categorie" name="categorie" (change)="selected()">
+                <option *ngFor="let food of equipes" [value]="food.value"  >
+                  {{food.viewValue}}
+                </option>
+              </select>
+
+            </div>
+            <!-- /.box-body -->
+
+            <div class="box-footer">
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+          </form>
+        </div>
+        <!-- /.box -->
+      </div>
+    </div>
+
+    <!-- /.box -->
+  </div>
+  <!-- /.col -->
+  <!-- /.row -->
+
+
+
+</div>
+
+
+

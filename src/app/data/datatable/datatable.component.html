@@ -94,9 +94,9 @@
     <td>{{s.description}}</td>
     <td>{{s.quantite}}</td>
     <td>{{s.categorie}}</td>
-    <td><a class="btn btn-danger" (click)="onDelete(s.id_offre)">delete</a></td>
-    <td><a class="btn btn-success" (click)="onEdit(s)">Edit</a></td>
-    <td><a class="btn btn-info" (click)="onlistpropo(s)">proposition</a></td>
+    <td><a class="btn btn-danger" (click)="onDelete(s.id_offre)"><div class="fa fa-fw fa-eraser"></div>delete</a></td>
+    <td><a class="btn btn-success" (click)="onEdit(s)"><div class="fa fa-fw fa-edit"></div> Edit</a></td>
+    <td><a class="btn btn-info" (click)="onlistpropo(s)"><div class="fa fa-fw fa-navicon"></div>proposition</a></td>
   </tr>
 
   </tbody>
@@ -129,7 +129,7 @@
                 </div>
                 <div class="form-group">
                   <label class="control-label"> description</label>
-                  <input class="form-control" type="text" name="description" [(ngModel)]="offres.description">
+                  <textarea class="form-control" type="text" name="description" [(ngModel)]="offres.description"></textarea>
                 </div>
                 <div class="form-group">
                   <label class="control-label"> quantite</label>
@@ -146,7 +146,7 @@
               <!-- /.box-body -->
 
               <div class="box-footer">
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-success">Submit</button>
               </div>
             </form>
           </div>

@@ -30,7 +30,7 @@ import {GalleriaModule} from 'primeng/galleria';
 import { FindoffrebycategorieComponent } from './findoffrebycategorie/findoffrebycategorie.component';
 import {ScrollPanelModule} from 'primeng/scrollpanel';
 import { CarouselModule } from 'ngx-bootstrap';
-import { CameraComponent } from './camera/camera.component';
+import { CameraComponent } from './proposer/camera.component';
 import {WebcamModule} from 'ngx-webcam';
 import { PropositionComponent } from './proposition/proposition.component';
 import { TesttemplateComponent } from './testtemplate/testtemplate.component';
@@ -44,7 +44,19 @@ import { EnreprisebyinformatiqueComponent } from './enreprisebyinformatique/enre
 import { EnreprisebymaterielComponent } from './enreprisebymateriel/enreprisebymateriel.component';
 import { OffreFournisseurComponent } from './offre-fournisseur/offre-fournisseur.component';
 import { AjouterentrepriseComponent } from './ajouterentreprise/ajouterentreprise.component';
-
+import { DetailsentrepriseComponent } from './detailsentreprise/detailsentreprise.component';
+import { DetailspropositionComponent } from './detailsproposition/detailsproposition.component';
+import { ListuserComponent } from './listuser/listuser.component';
+import { PropositionfournisseurComponent } from './propositionfournisseur/propositionfournisseur.component';
+import { OffreadmineducationComponent } from './offreadmineducation/offreadmineducation.component';
+import { OffreadminfournitureComponent } from './offreadminfourniture/offreadminfourniture.component';
+import { OffreadmininformatiqueComponent } from './offreadmininformatique/offreadmininformatique.component';
+import { OffreadminmaterielComponent } from './offreadminmateriel/offreadminmateriel.component';
+import { AddpropositiondetailsComponent } from './addpropositiondetails/addpropositiondetails.component';
+import { ResizableModule } from 'angular-resizable-element';
+import { FormlyModule } from '@ngx-formly/core';
+import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
+import { MatStepperModule } from '@angular/material/stepper';
 @NgModule({
   declarations: [
     AppComponent,
@@ -77,7 +89,16 @@ import { AjouterentrepriseComponent } from './ajouterentreprise/ajouterentrepris
     EnreprisebyinformatiqueComponent,
     EnreprisebymaterielComponent,
     OffreFournisseurComponent,
-    AjouterentrepriseComponent
+    AjouterentrepriseComponent,
+    DetailsentrepriseComponent,
+    DetailspropositionComponent,
+    ListuserComponent,
+    PropositionfournisseurComponent,
+    OffreadmineducationComponent,
+    OffreadminfournitureComponent,
+    OffreadmininformatiqueComponent,
+    OffreadminmaterielComponent,
+    AddpropositiondetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -92,6 +113,14 @@ import { AjouterentrepriseComponent } from './ajouterentreprise/ajouterentrepris
     GalleriaModule,
     ScrollPanelModule,
     WebcamModule,
+    ResizableModule,
+    MatStepperModule,
+    FormlyBootstrapModule,
+    FormlyModule.forRoot({
+      validationMessages: [
+        { name: 'required', message: 'This field is required' },
+      ],
+    }),
     CarouselModule.forRoot()
 
   ],

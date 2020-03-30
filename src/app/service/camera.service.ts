@@ -33,6 +33,21 @@ export class CameraService {
 
     return this.http.request(req);
   }
+
+  addfile(file: File, Description: string, id: number, idoffre: string): Observable<HttpEvent<{}>> {
+    const formdata: FormData = new FormData();
+
+    formdata.append('file', file);
+    formdata.append('description', Description);
+    const req = new HttpRequest('POST', this.baseUrl + id + '/addproposition/' + idoffre, formdata, {
+      reportProgress: true,
+      responseType: 'text'
+    });
+
+    return this.http.request(req);
+  }
+
+
   pushFile(file: File, Description: string, id: number, idoffre: number): Observable<HttpEvent<{}>> {
     const formdata: FormData = new FormData();
 
@@ -45,8 +60,24 @@ export class CameraService {
 
     return this.http.request(req);
   }
-  getFiles(idoffre: number): Observable<any> {
+  uploaddetails(file: File, Description: string, id: number, idoffre: string): Observable<HttpEvent<{}>> {
+    const formdata: FormData = new FormData();
+
+    formdata.append('file', file);
+    formdata.append('description', Description);
+    const req = new HttpRequest('POST', this.baseUrl + id + '/addproposition/' + idoffre, formdata, {
+      reportProgress: true,
+      responseType: 'text'
+    });
+
+    return this.http.request(req);
+  }
+
+  getFiles(idoffre: string ): Observable<any> {
     return this.http.get(this.baseUrl + 'listpropbyoff/' + idoffre);
+  }
+  getentreprisebypropo(idoffre: string ): Observable<any> {
+    return this.http.get(this.baseUrl + 'listentreprisebypropo/' + idoffre);
   }
    getuserbyid(url): Observable<any> {
     return this.http.get(this.baseUrl + 'api/auth/user/' + url);
@@ -54,6 +85,8 @@ export class CameraService {
   getoffrebyid(url): Observable<any> {
     return this.http.get(this.baseUrl + 'offre/offre/' + url);
   }
-
+  findpropouserbyoffre(idoffre: string, iduser: number ): Observable<any> {
+    return this.http.get(this.baseUrl + 'findpropouserbyoffre/' + iduser + '/' + idoffre);
+  }
 
 }

@@ -24,7 +24,13 @@ export class UploadFileService {
   }
 
   getFiles(): Observable<any> {
-    return this.http.get(this.baseUrl + '/getAll');
+    return this.http.get(this.baseUrl + '/entreprises');
+  }
+
+
+
+  listpropobyoffreid(id): Observable<any> {
+    return this.http.get(this.baseUrl + '/listpropbyoff/' + id);
   }
   getlistoffrebycat(url): Observable<any> {
     return this.http.get(this.baseUrl + '/offre/listoffrebycat?categorie=' + url);

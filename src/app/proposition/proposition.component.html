@@ -1,18 +1,125 @@
+<!-- Parallax 2 start -->
+<section class="parallax parallax2">
+  <div class="parallax-overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <h2>list des propostions</h2>
+        <h3>veuillez Proposer</h3>
+        <p>
+          <a href="/data" class="btn btn-primary white">liste des offres</a>
+          <a href="#" class="btn btn-primary solid">Get In Touch</a>
+        </p>
+      </div>
+    </div>
+  </div><!-- Container end -->
+</section><!-- Parallax 2 end -->
+<section id="service" class="service angle">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 heading">
+        <span class="title-icon float-left"><i class="fa fa-cogs"></i></span>
+        <h2 class="title">tous les offres<span class="title-desc">A Quality Experience Team with 4 years
+						experience</span></h2>
+      </div>
+    </div><!-- Title row end -->
 
-<br> <br>
-<div  class="row">
-  <div class="col-md-4" *ngFor="let s of t1"   >
+    <div class="row">
+      <div class="col-md-3 col-sm-3 wow fadeInDown" data-wow-delay=".5s">
+        <div class="service-content text-center">
+          <span class="service-icon icon-pentagon" (click)="materiel()"><i class="fa fa-tachometer"></i></span>
+          <h3>Offre Materiel</h3>
+          <p>maintenance ,Immeuble ,Club esprit</p>
+        </div>
+      </div>
+      <!--/ End first service -->
+
+      <div class="col-md-3 col-sm-3 wow fadeInDown" data-wow-delay=".8s">
+        <div class="service-content text-center">
+          <span class="service-icon icon-pentagon"(click)="fourniture()"><i class="fa fa-android"></i></span>
+          <h3>Offre Fourniture</h3>
+          <p>fourniture resto,fourniture foyer,fourniture club,fourniture prof</p>
+        </div>
+      </div>
+      <!--/ End Second service -->
+
+      <div class="col-md-3 col-sm-3 wow fadeInDown" data-wow-delay="1.1s">
+        <div class="service-content text-center">
+          <span class="service-icon icon-pentagon" (click)="education()"><i class="fa fa-shopping-cart"></i></span>
+          <h3>Offre Education</h3>
+          <p>table,tableau,chaise,projecteur,stylos,feuille</p>
+        </div>
+      </div>
+      <!--/ End Third service -->
+
+      <div class="col-md-3 col-sm-3 wow fadeInDown" data-wow-delay="1.4s">
+        <div class="service-content text-center">
+          <span class="service-icon icon-pentagon" (click)="informatique()"><i class="fa fa-lightbulb-o"></i></span>
+          <h3>Offre informatique</h3>
+          <p>ordinateur,cables,imprimentes,matieriel mobiles,serveurs</p>
+        </div>
+      </div>
+      <!--/ End 4th service -->
+    </div><!-- Content row end -->
+  </div>
+  <!--/ Container end -->
+</section>
 
 
-    <p-card  header={{s.description}} subheader="" [style]="{width: '250px'}" styleClass="ui-card-shadow" >
-      <p-header>
-        <img src="http://localhost:8080/files/{{s.name}}" style="width:250px;height:200px">
-      </p-header>
+<!-- /.box-header -->
+<div class="box-body">
+ <div id="child-left">
+  <table #dataTable id="table1"  class="table table-bordered table-striped" align="center" style="width:85% ">
+    <thead>
+    <tr>
+      <th>proposition</th>
+      <th>description</th>
+      <th>valider</th>
+      <th>details</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr  *ngFor="let s of t1" >
+      <td><img src="http://localhost:8080/files/{{s.name}}" style="width:50px;height:40px"></td>
+      <td>{{s.description}}</td>
 
-      <p-footer>
 
-        <button pButton type="button" label="details" icon="pi pi-times" class="ui-button-secondary"></button>
-      </p-footer>
-    </p-card>
-    <br><br>
-  </div></div>
+
+
+      <form #f="ngForm"></form>
+      <td>  <div  *ngIf="s.validation === false "><img src="http://localhost:8080/files/valider-png-3.png" style="width:50px;height:40px"></div> <div  *ngIf="s.validation === true "><a class="btn btn-success" (click)="Validerproposition(s.id_proposition,f.value)"><div class="fa fa-heart-o"></div> valider</a></div></td>
+      <td><button class="btn btn-info" (click)="details(s)" > <div class=" fa fa-fw fa-arrows-alt"></div>    details</button></td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+      <th>proposition</th>
+      <th>description</th>
+      <th>valider</th>
+      <th> Details</th>
+
+    </tr>
+    </tfoot>
+  </table>
+ </div>
+  <div >
+  <br><br><br><br>
+    <table border="0" #dataTable  class="table-borderless" align="center" style="width:15% ">
+    <thead>
+    <tr>
+      <th><br></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr  *ngFor="let s of t1.name_entreprise" >
+      <td><br>s<br> <br></td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+      <th><br><br></th>
+    </tr>
+    </tfoot>
+  </table>
+  </div>
+  </div>

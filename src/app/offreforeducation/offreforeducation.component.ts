@@ -86,8 +86,7 @@ export class OffreforeducationComponent implements OnInit {
   }
   onlistpropo(s) {
     console.log(s);
-    const url = s._links.self.href;
-    this.router.navigateByUrl('onlistpropo/' + btoa(url));
+    this.router.navigateByUrl('propositionfournisseur/' + btoa(s.id_offre));
   }
   /* onDelete(s) {
      const conf = confirm('etes vous sur');
@@ -118,8 +117,7 @@ export class OffreforeducationComponent implements OnInit {
 
   onpropose(s) {
     console.log(s);
-    const url = s._links.self.href;
-    this.router.navigateByUrl('camera/' + btoa(url));
+    this.router.navigateByUrl('addproposition/' + btoa(s.id_offre));
   }
 
 }

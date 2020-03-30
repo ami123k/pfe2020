@@ -1,3 +1,63 @@
-<p>profile works!</p>
-<router-outlet></router-outlet>
+<section class="testimonial parallax parallax3">
+  <div class="parallax-overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div id="testimonial-carousel" class="owl-carousel owl-theme text-center testimonial-slide">
+        <div class="item">
+          <div class="testimonial-thumb">
+            <img src="assets/dist/img/user2-160x160.jpg" alt="testimonial">
+          </div>
+          <div class="testimonial-content">
+            <p class="testimonial-text">
+            bienvenue avec nous vous pouvez postuler dans nos offres  merci de faire l'ajout de votre société   au dessu,        pour voir les avis de nos partenaire il seffit de paginer
+            </p>
+            <h3 class="name">{{username}} <br> <br><span>{{email}}</span></h3>
+          </div>
+        </div>
+        <div class="item">
+          <div class="testimonial-thumb">
+            <img src="assets/dist/img/user2-160x160.jpg" alt="testimonial">
+          </div>
+          <div class="testimonial-content">
+            <p class="testimonial-text">
+              Lorem Ipsum as their default model text, and a search for ‘lorem ipsum’ will uncover many web sites still
+              in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on
+              purpose. Lorem Ipsum is that it as opposed to using.
+            </p>
+            <h3 class="name">Narek Bedros<span>Sr. Manager</span></h3>
+          </div>
+        </div>
+        <div class="item">
+          <div class="testimonial-thumb">
+            <img src="assets/dist/img/user2-160x160.jpg" alt="testimonial">
+          </div>
+          <div class="testimonial-content">
+            <p class="testimonial-text">
+              Lorem Ipsum as their default model text, and a search for ‘lorem ipsum’ will uncover many web sites still
+              in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on
+              purpose. Lorem Ipsum is that it as opposed to using.
+            </p>
+            <h3 class="name">Taline Lucine<span>Sales Manager</span></h3>
+          </div>
+        </div>
+      </div>
+      <!--/ Testimonial carousel end-->
+    </div>
+    <!--/ Row end-->
+  </div>
+  <!--/  Container end-->
+</section>
+<app-ajouterentreprise></app-ajouterentreprise>
 
+<br>
+  <carousel >
+    <h2 align="center">vous pouvez voir nos offres</h2>
+  <slide *ngFor="let s of offres">
+    <img class="d-block w-100" src="http://localhost:8080/files/photographie-conseils-pratiques-flou-gaussien.jpg" width="100%" height="400px" alt="Third slide">
+    <div class="carousel-caption d-none d-md-block">
+      <h3>{{s.name}}</h3>
+      <p>{{s.categorie}}</p>
+      <p>{{s.description}}</p>
+    </div>
+  </slide>
+</carousel>

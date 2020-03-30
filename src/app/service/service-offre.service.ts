@@ -23,6 +23,15 @@ export class ServiceOffreService {
     httpOptions.headers.append('Access-Control-Allow-Credentials', 'true');
     return this.httpClient.delete(url);
   }
+  findpropositionByid(id): Observable<any> {
+
+    return this.httpClient.get(this.host + 'findpropositionByid/' + id);
+  }
+  nameentreprisebypropo(id): Observable<any> {
+
+    return this.httpClient.get(this.host + '  nameentreprisebypropo/' + id);
+  }
+
   public save(url, data): Observable<any> {
     return this.httpClient.post<any>(url, data);
   }
@@ -44,5 +53,19 @@ export class ServiceOffreService {
     console.log('zz');
     console.log(offreid);
   }
-
+  public updateuser(url, data): Observable<any> {
+    return this.httpClient.put<any>(this.host + 'Updateuser/' + url, data);
+  }
+  deleteuser(userid: number): Observable<any> {
+    console.log('aa');
+    console.log(userid);
+    return this.httpClient.delete<any>(this.host + 'api/auth/deleteuser/' + userid);
+    console.log('zz');
+  }
+  public updateAdmin(id, data): Observable<any> {
+    return this.httpClient.put<any>(this.host + 'Updateadmin/' + id, data);
+  }
+  public updateproposition(id, data): Observable<any> {
+    return this.httpClient.put<any>(this.host + 'Updateproposition/' + id, data);
+  }
 }

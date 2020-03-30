@@ -9,6 +9,7 @@ import {Observable, Subject} from 'rxjs';
 import {Entreprise} from '../model/Entreprise';
 import {WebcamImage, WebcamInitError, WebcamUtil} from 'ngx-webcam';
 import {HttpEventType, HttpResponse} from '@angular/common/http';
+import {TokenStorageService} from '../auth/token-storage.service';
 
 @Component({
   selector: 'app-ajouterentreprise',
@@ -17,7 +18,7 @@ import {HttpEventType, HttpResponse} from '@angular/common/http';
 })
 export class AjouterentrepriseComponent implements OnInit {
 
-  constructor(private uploadService: UploadFileService , private activatedRoute: ActivatedRoute,  private catservice: ServiceOffreService, private sanitizer: DomSanitizer , private router: Router) { }
+  constructor(private uploadService: UploadFileService , private tokenStorage: TokenStorageService, private activatedRoute: ActivatedRoute,  private catservice: ServiceOffreService, private sanitizer: DomSanitizer , private router: Router) { }
   description: string;
   public get triggerObservable(): Observable<void> {
     return this.trigger.asObservable();
@@ -57,7 +58,7 @@ export class AjouterentrepriseComponent implements OnInit {
   private trigger: Subject<void> = new Subject<void>();
 // switch to next / previous / specific webcam; true/false: forward/backwards, string: deviceId
   private nextWebcam: Subject<boolean|string> = new Subject<boolean|string>();
-
+  private url: string;
   public webcamImage: WebcamImage = null;
 
   @Output()
@@ -75,6 +76,7 @@ export class AjouterentrepriseComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.afficheroffre();
     this.uploadService.getFiles().subscribe(e => {
       this.t1 = e;
       console.log(this.t1);
@@ -83,6 +85,7 @@ export class AjouterentrepriseComponent implements OnInit {
       .then((mediaDevices: MediaDeviceInfo[]) => {
         this.multipleWebcamsAvailable = mediaDevices && mediaDevices.length > 1;
       });
+
   }
   afficheroffre() {
     this.catservice.getresouce(this.catservice.host + 'offres')
@@ -104,7 +107,7 @@ export class AjouterentrepriseComponent implements OnInit {
   education() {
     this.router.navigateByUrl('entrepriseeducation');
   }
-  upload() {
+  upload(value: any) {
     const date = new Date().valueOf();
     let text = '';
     const possibleText = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -118,7 +121,11 @@ export class AjouterentrepriseComponent implements OnInit {
     const imageFile = new File([imageBlob], imageName, { type: 'image/jpeg' });
     this.progress.percentage = 0;
     this.currentFileUpload = this.selectedFiles.item(0);
-    this.uploadService.pushFileToStorage(this.currentFileUpload, imageFile, this.description, this.name, this.categorie).subscribe(event => {
+    this.uploadService.pushFileToStorage(this.currentFileUpload, imageFile, this.description, this.name, this.categorie)
+      .subscribe(event => {
+      this.catservice.updateuser(this.tokenStorage.getUser().id, value)
+        .subscribe(data => {alert('vous ete associer a cette entreprise'); this.router.navigateByUrl('/data'); });
+      console.log(this.tokenStorage.getUser().id);
       if (event.type === HttpEventType.UploadProgress) {
         this.progress.percentage = Math.round(100 * event.loaded / event.total);
       } else if (event instanceof HttpResponse) {
@@ -127,6 +134,7 @@ export class AjouterentrepriseComponent implements OnInit {
     });
 
     this.selectedFiles = undefined;
+
   }
 
   showFiles(enable: boolean) {
@@ -195,7 +203,16 @@ export class AjouterentrepriseComponent implements OnInit {
 
 
 
+  activedStep = 0;
 
+
+  prevStep(step) {
+    this.activedStep = step - 1;
+  }
+
+  nextStep(step) {
+    this.activedStep = step + 1;
+  }
 
 
 }

@@ -12,7 +12,6 @@ import * as $ from 'jquery';
 })
 export class OffreforfournitureComponent implements OnInit {
 
-
   constructor(private catservice: ServiceOffreService, private activatedRoute: ActivatedRoute, private router: Router,private uploadService: UploadFileService ) {
   }
 
@@ -81,10 +80,12 @@ export class OffreforfournitureComponent implements OnInit {
   education() {
     this.router.navigateByUrl('education');
   }
+  tous() {
+    this.router.navigateByUrl('data');
+  }
   onlistpropo(s) {
     console.log(s);
-    const url = s._links.self.href;
-    this.router.navigateByUrl('onlistpropo/' + btoa(url));
+    this.router.navigateByUrl('propositionfournisseur/' + btoa(s.id_offre));
   }
   /* onDelete(s) {
      const conf = confirm('etes vous sur');
@@ -112,13 +113,10 @@ export class OffreforfournitureComponent implements OnInit {
       });
     }
   }
-  tous() {
-    this.router.navigateByUrl('data');
-  }
+
   onpropose(s) {
     console.log(s);
-    const url = s._links.self.href;
-    this.router.navigateByUrl('camera/' + btoa(url));
+    this.router.navigateByUrl('addproposition/' + btoa(s.id_offre));
   }
 
 }
@@ -126,4 +124,3 @@ export interface Equipeee {
   value: string;
   viewValue: string;
 }
-

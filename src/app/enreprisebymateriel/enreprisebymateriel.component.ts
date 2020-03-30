@@ -16,7 +16,6 @@ import {WebcamImage, WebcamInitError, WebcamUtil} from 'ngx-webcam';
 })
 export class EnreprisebymaterielComponent implements OnInit {
   constructor(private uploadService: UploadFileService , private activatedRoute: ActivatedRoute,  private catservice: ServiceOffreService, private sanitizer: DomSanitizer , private router: Router) { }
-  description: string;
   public get triggerObservable(): Observable<void> {
     return this.trigger.asObservable();
   }
@@ -25,6 +24,7 @@ export class EnreprisebymaterielComponent implements OnInit {
   public get nextWebcamObservable(): Observable<boolean|string> {
     return this.nextWebcam.asObservable();
   }
+  description: string;
   public offres: Offre;
 
   cheminImage1: any = 'http://localhost:8080/files/';
@@ -65,15 +65,15 @@ export class EnreprisebymaterielComponent implements OnInit {
   public allowCameraSwitch = true;
   public multipleWebcamsAvailable = false;
   public deviceId: string;
+url: string ;
   selected() {
     console.log(this.categorie);
   }
   selectFile(event) {
     this.selectedFiles = event.target.files;
   }
-
   ngOnInit(): void {
-    this.uploadService.getFiles().subscribe(e => {
+    this.uploadService.getlistentreprisebymateriel(this.url).subscribe(e => {
       this.t1 = e;
       console.log(this.t1);
     });
@@ -81,6 +81,7 @@ export class EnreprisebymaterielComponent implements OnInit {
       .then((mediaDevices: MediaDeviceInfo[]) => {
         this.multipleWebcamsAvailable = mediaDevices && mediaDevices.length > 1;
       });
+    this.afficheroffre();
   }
   afficheroffre() {
     this.catservice.getresouce(this.catservice.host + 'offres')

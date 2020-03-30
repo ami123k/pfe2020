@@ -41,49 +41,20 @@ export class LoginComponent implements OnInit {
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getUser().roles;
-        this.reloadPage();
+
+this.onprofile();
       },
       err => {
         this.errorMessage = err.error.message;
         this.isLoginFailed = true;
       }
     );
-    /*
-        this.req = this.req.clone({
-          setHeaders: {
-            'Content-Type' : 'application/json; charset=utf-8',
-            Accept       : 'application/json',
-            Authorization: `Bearer ${this.tokenStorage.getToken()}`,
-          },
-        });
-        return this.next.handle(this.req);*/
+
+  }
+  onprofile() {
+    this.router.navigateByUrl('profile');
   }
 
-  /*login(data) {
-        this.authService.login(data).subscribe(log => {
-
-          localStorage.setItem('token', log.accessToken);
-          this.userService.getPublicContent().subscribe(res => {
-            res = res.filter((val) => {
-              return val.username === data.username;
-            });
-            localStorage.setItem('user', JSON.stringify(res));
-            this.user = JSON.parse(localStorage.getItem('user'));
-            this.role = this.user[0].roles[0].name;
-
-            console.log(this.role);
-            if (this.role === 'ROLE_ADMIN') {
-              this.router.navigate(['/admin']);
-            } else {
-              this.router.navigate(['/user']);
-            }
-
-          });
-
-
-        });
-
-     }*/
   reloadPage() {
     window.location.reload();
   }

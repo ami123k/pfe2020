@@ -1,10 +1,55 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
+  <meta charset = "UTF-8" />
   <title>Pfe</title>
   <base href="/">
 
+  <!--     Fonts and icons     -->
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
+  <link href="assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
+  <style media="screen">
+
+    #loader {
+      position: absolute;
+      display: block;
+      left: 0;
+      right: 0;
+      margin-left: auto;
+      margin-right: auto;
+      z-index: 1;
+      -webkit-transform: translate3d(0, -50%, 0);
+      -moz-transform: translate3d(0, -50%, 0);
+      -o-transform: translate3d(0, -50%, 0);
+      -ms-transform: translate3d(0, -50%, 0);
+      transform: translate3d(0, -50%, 0);
+      text-align: center;
+      border-radius: 50%;
+      width: 45px;
+      height: 45px;
+      top: 50%; }
+
+  </style>
+  <!-- Bootstrap Core Css -->
+  <link href="plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+  <!-- Waves Effect Css -->
+  <link href="plugins/node-waves/waves.css" rel="stylesheet" />
+
+  <!-- Animation Css -->
+  <link href="plugins/animate-css/animate.css" rel="stylesheet" />
+
+  <!-- JQuery DataTable Css -->
+  <link href="plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
+
+  <!-- Custom Css -->
+  <link href="css/style.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="/node_modules/primeicons/primeicons.css" />
+  <link rel="stylesheet" type="text/css" href="/node_modules/primeng/resources/themes/nova-light/theme.css" />
+  <link rel="stylesheet" type="text/css" href="/node_modules/primeng/resources/primeng.min.css" />
+  <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+  <link href="css/themes/all-themes.css" rel="stylesheet" />
   <link rel="stylesheet" href="assets/plugins/animate.css">
   <!-- Prettyphoto -->
   <link rel="stylesheet" href="assets/plugins/prettyPhoto.css">
@@ -107,10 +152,161 @@
 <!-- google map -->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&libraries=places"></script>
 <script src="assets/plugins/google-map/gmap.js"></script>
+<!-- Jquery DataTable Plugin Js -->
+<script src="plugins/jquery-datatable/jquery.dataTables.js"></script>
+<script src="plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
+<script src="plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
+<script src="plugins/jquery-datatable/extensions/export/buttons.flash.min.js"></script>
+<script src="plugins/jquery-datatable/extensions/export/jszip.min.js"></script>
+<script src="plugins/jquery-datatable/extensions/export/pdfmake.min.js"></script>
+<script src="plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
+<script src="plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
+<script src="plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
+<!-- Jquery Core Js -->
+<script src="plugins/jquery/jquery.min.js"></script>
 
+<!-- Bootstrap Core Js -->
+<script src="plugins/bootstrap/js/bootstrap.js"></script>
+
+<!-- Select Plugin Js -->
+<script src="plugins/bootstrap-select/js/bootstrap-select.js"></script>
+
+<!-- Slimscroll Plugin Js -->
+<script src="plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+
+<!-- Waves Effect Plugin Js -->
+<script src="plugins/node-waves/waves.js"></script>
+
+<!-- Custom Js -->
+<script src="js/admin.js"></script>
+<script src="js/pages/tables/jquery-datatable.js"></script>
+
+<!-- Demo Js -->
+<script src="js/demo.js"></script>
 <!-- Main Script -->
 <script src="assets/js/script.js"></script>
+<script>
+;(function($) {
+"use strict";
+
+//* Form js
+function verificationForm(){
+//jQuery time
+var current_fs, next_fs, previous_fs; //fieldsets
+var left, opacity, scale; //fieldset properties which we will animate
+var animating; //flag to prevent quick multi-click glitches
+
+$(".next").click(function () {
+if (animating) return false;
+animating = true;
+
+current_fs = $(this).parent();
+next_fs = $(this).parent().next();
+
+//activate next step on progressbar using the index of next_fs
+$("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+
+//show the next fieldset
+next_fs.show();
+//hide the current fieldset with style
+current_fs.animate({
+opacity: 0
+}, {
+step: function (now, mx) {
+//as the opacity of current_fs reduces to 0 - stored in "now"
+//1. scale current_fs down to 80%
+scale = 1 - (1 - now) * 0.2;
+//2. bring next_fs from the right(50%)
+left = (now * 50) + "%";
+//3. increase opacity of next_fs to 1 as it moves in
+opacity = 1 - now;
+current_fs.css({
+'transform': 'scale(' + scale + ')',
+'position': 'absolute'
+});
+next_fs.css({
+'left': left,
+'opacity': opacity
+});
+},
+duration: 800,
+complete: function () {
+current_fs.hide();
+animating = false;
+},
+//this comes from the custom easing plugin
+easing: 'easeInOutBack'
+});
+});
+
+$(".previous").click(function () {
+if (animating) return false;
+animating = true;
+
+current_fs = $(this).parent();
+previous_fs = $(this).parent().prev();
+
+//de-activate current step on progressbar
+$("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+
+//show the previous fieldset
+previous_fs.show();
+//hide the current fieldset with style
+current_fs.animate({
+opacity: 0
+}, {
+step: function (now, mx) {
+//as the opacity of current_fs reduces to 0 - stored in "now"
+//1. scale previous_fs from 80% to 100%
+scale = 0.8 + (1 - now) * 0.2;
+//2. take current_fs to the right(50%) - from 0%
+left = ((1 - now) * 50) + "%";
+//3. increase opacity of previous_fs to 1 as it moves in
+opacity = 1 - now;
+current_fs.css({
+'left': left
+});
+previous_fs.css({
+'transform': 'scale(' + scale + ')',
+'opacity': opacity
+});
+},
+duration: 800,
+complete: function () {
+current_fs.hide();
+animating = false;
+},
+//this comes from the custom easing plugin
+easing: 'easeInOutBack'
+});
+});
+
+$(".submit").click(function () {
+return false;
+})
+};
+
+//* Add Phone no select
+function phoneNoselect(){
+if ( $('#msform').length ){
+$("#phone").intlTelInput();
+$("#phone").intlTelInput("setNumber", "+880");
+};
+};
+//* Select js
+function nice_Select(){
+if ( $('.product_select').length ){
+$('select').niceSelect();
+};
+};
+/*Function Calls*/
+verificationForm ();
+phoneNoselect ();
+nice_Select ();
+})(jQuery);
+</script>
 <app-root></app-root>
+
 </body>
 </html>
 

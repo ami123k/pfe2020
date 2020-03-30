@@ -69,15 +69,24 @@ export class OffreformaterielComponent implements OnInit {
   }
 
 
-  onEdit(s) {
-    console.log(s);
-    const url = s._links.self.href;
-    this.router.navigateByUrl('update/' + btoa(url));
+  informatique() {
+    this.router.navigateByUrl('offreforinfo');
+  }
+  fourniture() {
+    this.router.navigateByUrl('fourniture');
+  }
+  materiel() {
+    this.router.navigateByUrl('offreformat');
+  }
+  education() {
+    this.router.navigateByUrl('education');
+  }
+  tous() {
+    this.router.navigateByUrl('data');
   }
   onlistpropo(s) {
     console.log(s);
-    const url = s._links.self.href;
-    this.router.navigateByUrl('onlistpropo/' + btoa(url));
+    this.router.navigateByUrl('propositionfournisseur/' + btoa(s.id_offre));
   }
   /* onDelete(s) {
      const conf = confirm('etes vous sur');
@@ -108,24 +117,9 @@ export class OffreformaterielComponent implements OnInit {
 
   onpropose(s) {
     console.log(s);
-    const url = s._links.self.href;
-    this.router.navigateByUrl('camera/' + btoa(url));
+    this.router.navigateByUrl('addproposition/' + btoa(s.id_offre));
   }
-  informatique() {
-    this.router.navigateByUrl('offreforinfo');
-  }
-  fourniture() {
-    this.router.navigateByUrl('fourniture');
-  }
-  materiel() {
-    this.router.navigateByUrl('offreformat');
-  }
-  education() {
-    this.router.navigateByUrl('education');
-  }
-  tous() {
-    this.router.navigateByUrl('data');
-  }
+
 }
 export interface Equipeee {
   value: string;

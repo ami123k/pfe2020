@@ -1,5 +1,5 @@
-@import "~bootstrap/dist/css/bootstrap.css";
-@import "~datatables.net-bs4/css/dataTables.bootstrap4.css";
+
+
 #parent{
   padding: 0 auto;
   width: 1200px;
@@ -12,7 +12,17 @@
   float: right;
   width: 200px;
 }
+::ng-deep .mat-step-header:nth-of-type(1) .mat-step-icon {
+  background-color: var(--my-var1);
+}
 
+::ng-deep .mat-step-header:nth-of-type(2) .mat-step-icon {
+  background-color: var(--my-var2);
+}
+
+::ng-deep .mat-step-header:nth-of-type(3) .mat-step-icon {
+  background-color: var(--my-var3);
+}
 .custom .ui-scrollpanel-wrapper {
   border-right: 9px solid #f4f4f4;
 }

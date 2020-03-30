@@ -75,8 +75,7 @@ export class OffreFournisseurComponent implements OnInit {
   }
   onlistpropo(s) {
     console.log(s);
-    const url = s._links.self.href;
-    this.router.navigateByUrl('onlistpropo/' + btoa(url));
+    this.router.navigateByUrl('propositionfournisseur/' + btoa(s.id_offre));
   }
   /* onDelete(s) {
      const conf = confirm('etes vous sur');
