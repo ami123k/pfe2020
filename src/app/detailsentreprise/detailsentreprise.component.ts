@@ -17,14 +17,16 @@ export class DetailsentrepriseComponent implements OnInit {
   t1: any;
 
   ngOnInit() {
+
     this.url = atob(this.activatedRoute.snapshot.params.id);
     console.log(this.url);
-    this.catservice.getre(this.url).subscribe(data => {this.currentprod = data; },
+    this.catservice.getre('http://localhost:8080/listentreprise/' + this.url).subscribe(data => {this.currentprod = data; },
       error1 => {console.log(error1); });
     this.uploadService.getFiles().subscribe(e => {
       this.t1 = e._embedded.entreprises;
       console.log(this.t1);
     }); }
 
-
 }
+
+

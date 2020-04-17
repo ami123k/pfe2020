@@ -68,4 +68,11 @@ export class ServiceOffreService {
   public updateproposition(id, data): Observable<any> {
     return this.httpClient.put<any>(this.host + 'Updateproposition/' + id, data);
   }
+
+  entreprisestat() {
+    return this.httpClient.get('http://localhost:8080/stat-entreprise' );
+  }
+  offrestat() {
+    return this.httpClient.get('http://localhost:8080/stat-offre' );
+  }
 }

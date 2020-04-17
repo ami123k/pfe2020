@@ -5,7 +5,11 @@
   </div>
   <!-- /.box-header -->
   <!-- form start -->
-  <form role="form">
+  <form *ngIf="!isSuccessful"
+        name="form"
+        (ngSubmit)="f.form.valid && uploadimageforinformatique()"
+        #f="ngForm"
+        novalidate>
     <p-scrollPanel [style]="{width: '100%', height: '700px'}" styleClass="custom">
       <div class="col-md-6" style="width: 600px; margin: 0 auto; " >
 
@@ -33,35 +37,66 @@
                 <li>{{error | json}}</li>
               </ul>
 
-              <input type="text" class="form-control" type="text" name="description" [(ngModel)]="description">
+              <div class="form-group">
+                <label for="descriptions" > Description</label>
+                <textarea id="descriptions"   #descriptions="ngModel" required
+                          minlength="3"
+                          maxlength="2000" class="form-control" type="text" name="description" ngModel [(ngModel)]="description"></textarea>
+              </div>
+              <div class="alert-danger" *ngIf="f.submitted && descriptions.invalid">
+                <div *ngIf="descriptions.errors.required">description is required</div>
+                <div *ngIf="descriptions.errors.minlength">
+                  description must be at least 3 characters
+                </div>
+                <div *ngIf="descriptions.errors.maxlength">
+                  description must be at most 20 characters
+                </div>
+              </div>
 
-              <button class="btn btn-success" (click)="uploadimageforinformatique()">Upload</button>
+              <button class="btn btn-success" type="submit" >valider</button>
 
 
             </div>
             <div class="tab-pane" id="tab2">
 
 
+              <form *ngIf="!isSuccessful"
+                    name="form"
+                    (ngSubmit)="f.form.valid && uploadfile()"
+                    #f="ngForm"
+                    novalidate>
+                <div class="widget">
+                  <div >
 
-              <div class="widget">
-                <div >
+                    <div class="progress">
+                      <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
+                           aria-valuemin="0" aria-valuemax="100" [ngStyle]="{width:progress.percentage+'%'}">
+                        {{progress.percentage}}%</div>
+                    </div>
 
-                  <div class="progress">
-                    <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
-                         aria-valuemin="0" aria-valuemax="100" [ngStyle]="{width:progress.percentage+'%'}">
-                      {{progress.percentage}}%</div>
+                    <label class="btn btn-default">
+                      <input type="file" (change)="selectFile($event)">
+                    </label>
+                      <div class="form-group">
+                        <label for="description" > Description</label>
+                        <textarea id="description"   #descriptions="ngModel" required
+                                  minlength="3"
+                                  maxlength="2000" class="form-control" type="text" name="description" ngModel [(ngModel)]="description"></textarea>
+                      </div>
+                      <div class="alert-danger" *ngIf="f.submitted && descriptions.invalid">
+                        <div *ngIf="descriptions.errors.required">description is required</div>
+                        <div *ngIf="descriptions.errors.minlength">
+                          description must be at least 3 characters
+                        </div>
+                        <div *ngIf="descriptions.errors.maxlength">
+                          description must be at most 20 characters
+                        </div>
+                      </div>
+
+                    <button  class="btn btn-success" [disabled]="!selectedFiles" type="submit" >valider</button>
                   </div>
-
-                  <label class="btn btn-default">
-                    <input type="file" (change)="selectFile($event)">
-                  </label>
-                  <div class="form-group" >
-                    <label class="control-label"> name</label>
-                    <input type="text" class="form-control" type="text" name="description" [(ngModel)]="description">
-                  </div>
-                  <button class="btn btn-success" [disabled]="!selectedFiles" (click)="uploadfile()">Upload</button>
-                </div>
-              </div><!-- Text widget end -->
+                </div><!-- Text widget end -->
+              </form>
             </div>
 
           </div>

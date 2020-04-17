@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Offre} from '../../model/offre';
 import {ServiceOffreService} from '../../service/service-offre.service';
-import {Equipeee} from '../datatable/datatable.component';
 import {UploadFileService} from '../../service/upload-file.service';
+import { AbstractControl } from '@angular/forms';
 
 @Component({
   selector: 'app-updateoffre',
@@ -13,6 +13,7 @@ import {UploadFileService} from '../../service/upload-file.service';
 export class UpdateoffreComponent implements OnInit {
   public currentprod: Offre;
   private url: string;
+  form: any = {};
   equipe: Equipe[] = [
     {value: 'fourniture', viewValue: 'fourniture'},
     {value: 'informatique', viewValue: 'informatique'},
@@ -25,10 +26,11 @@ export class UpdateoffreComponent implements OnInit {
   selected() {
     console.log(this.categorie);
   }
+  isSuccessful = false;
   ngOnInit() {
     this.url = atob(this.activatedRoute.snapshot.params.id);
     console.log(this.url);
-    this.catservice.getre(this.url).subscribe(data => {this.currentprod = data; },
+    this.catservice.getre('http://localhost:8080/offres/' + this.url).subscribe(data => {this.currentprod = data; },
       error1 => {console.log(error1); });
     this.onentreprise();
   }
@@ -41,7 +43,7 @@ export class UpdateoffreComponent implements OnInit {
   }
 
   onupdateprod(value: any) {
-    this.catservice.update(this.url, value).subscribe(data => {alert('mise ajour terminer'); this.router.navigateByUrl('/data'); });
+    this.catservice.update('http://localhost:8080/offre/Update/' + this.url, value).subscribe(data => {alert('mise ajour terminer'),  this.isSuccessful = true; this.router.navigateByUrl('/data'); });
   }
 
 }
@@ -49,3 +51,4 @@ export interface Equipe {
   value: string;
   viewValue: string;
 }
+

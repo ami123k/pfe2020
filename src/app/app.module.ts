@@ -57,6 +57,13 @@ import { ResizableModule } from 'angular-resizable-element';
 import { FormlyModule } from '@ngx-formly/core';
 import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
 import { MatStepperModule } from '@angular/material/stepper';
+import {DialogModule} from 'primeng/dialog';
+import { AvisComponent } from './avis/avis.component';
+import {RatingModule} from 'primeng/rating';
+import { MymodalcomponentComponent } from './mymodalcomponent/mymodalcomponent.component';
+import { ChartsModule } from 'ng2-charts';
+import { DetailsentreprisewithoutcategorieComponent } from './detailsentreprisewithoutcategorie/detailsentreprisewithoutcategorie.component';
+import { PiechartComponent } from './piechart/piechart.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -98,7 +105,11 @@ import { MatStepperModule } from '@angular/material/stepper';
     OffreadminfournitureComponent,
     OffreadmininformatiqueComponent,
     OffreadminmaterielComponent,
-    AddpropositiondetailsComponent
+    AddpropositiondetailsComponent,
+    AvisComponent,
+    MymodalcomponentComponent,
+    DetailsentreprisewithoutcategorieComponent,
+    PiechartComponent
   ],
   imports: [
     BrowserModule,
@@ -113,7 +124,10 @@ import { MatStepperModule } from '@angular/material/stepper';
     GalleriaModule,
     ScrollPanelModule,
     WebcamModule,
+    DialogModule,
     ResizableModule,
+    RatingModule,
+    ChartsModule,
     MatStepperModule,
     FormlyBootstrapModule,
     FormlyModule.forRoot({

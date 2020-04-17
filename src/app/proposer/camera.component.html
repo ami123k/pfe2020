@@ -1,11 +1,28 @@
-
+<!-- Parallax 2 start -->
+<section class="parallax parallax2">
+  <div class="parallax-overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <h2>Offres D' Esprit</h2>
+        <h3>veuillez Proposer</h3>
+        <p>
+          <a href="/offrefournisseur" class="btn btn-primary white">tous les offes</a>
+        </p>
+      </div>
+    </div>
+  </div><!-- Container end -->
+</section><!-- Parallax 2 end -->
 <div class="box box-primary">
   <div class="box-header with-border">
-    <h3 class="box-title">Quick Example</h3>
   </div>
   <!-- /.box-header -->
   <!-- form start -->
-  <form role="form">
+  <form *ngIf="!isSuccessful"
+        name="form"
+        (ngSubmit)="f.form.valid && uploadwebimg()"
+        #f="ngForm"
+        novalidate>
     <p-scrollPanel [style]="{width: '100%', height: '700px'}" styleClass="custom">
       <div class="col-md-6" style="width: 600px; margin: 0 auto; " >
 
@@ -33,35 +50,70 @@
                 <li>{{error | json}}</li>
               </ul>
 
-              <input type="text" class="form-control" type="text" name="description" [(ngModel)]="description">
+              <div class="form-group">
+                <label for="descriptions" > Description</label>
+                <textarea id="descriptions"   #descriptions="ngModel" required
+                          minlength="3"
+                          maxlength="2000" class="form-control" type="text" name="description" ngModel [(ngModel)]="description"></textarea>
+              </div>
+              <div class="alert-danger" *ngIf="f.submitted && descriptions.invalid">
+                <div *ngIf="descriptions.errors.required">description is required</div>
+                <div *ngIf="descriptions.errors.minlength">
+                  description must be at least 3 characters
+                </div>
+                <div *ngIf="descriptions.errors.maxlength">
+                  description must be at most 20 characters
+                </div>
+              </div>
 
-              <button class="btn btn-success" (click)="uploadimageforinformatique()">Upload</button>
-
+              <button class="btn btn-success" type="submit" pButton icon="pi pi-external-link" label="proposer"></button>
+              <p-dialog header="Donner votre avis " [(visible)]="display" [style]="{width: '50vw'}" [baseZIndex]="10000">
+               <app-avis></app-avis>
+                   <p-footer>
+                </p-footer>
+              </p-dialog>
 
             </div>
             <div class="tab-pane" id="tab2">
 
 
+              <form *ngIf="!isSuccessful"
+                    name="form"
+                    (ngSubmit)="f.form.valid && uploadfile()"
+                    #f="ngForm"
+                    novalidate>
+                <div class="widget">
+                  <div >
 
-              <div class="widget">
-                <div >
+                    <div class="progress">
+                      <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
+                           aria-valuemin="0" aria-valuemax="100" [ngStyle]="{width:progress.percentage+'%'}">
+                        {{progress.percentage}}%</div>
+                    </div>
 
-                  <div class="progress">
-                    <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
-                         aria-valuemin="0" aria-valuemax="100" [ngStyle]="{width:progress.percentage+'%'}">
-                      {{progress.percentage}}%</div>
+                    <label class="btn btn-default">
+                      <input type="file" (change)="selectFile($event)">
+                    </label>
+                      <div class="form-group">
+                        <label for="description" > Description</label>
+                        <textarea id="description"   #descriptions="ngModel" required
+                                  minlength="3"
+                                  maxlength="2000" class="form-control" type="text" name="description" ngModel [(ngModel)]="description"></textarea>
+                      </div>
+                      <div class="alert-danger" *ngIf="f.submitted && descriptions.invalid">
+                        <div *ngIf="descriptions.errors.required">description is required</div>
+                        <div *ngIf="descriptions.errors.minlength">
+                          description must be at least 3 characters
+                        </div>
+                        <div *ngIf="descriptions.errors.maxlength">
+                          description must be at most 20 characters
+                        </div>
+                      </div>
+
+                    <button  class="btn btn-success" [disabled]="!selectedFiles" type="submit" >valider</button>
                   </div>
-
-                  <label class="btn btn-default">
-                    <input type="file" (change)="selectFile($event)">
-                  </label>
-                  <div class="form-group" >
-                    <label class="control-label"> name</label>
-                    <input type="text" class="form-control" type="text" name="description" [(ngModel)]="description">
-                  </div>
-                  <button class="btn btn-success" [disabled]="!selectedFiles" (click)="uploadfile()">Upload</button>
-                </div>
-              </div><!-- Text widget end -->
+                </div><!-- Text widget end -->
+              </form>
             </div>
 
           </div>

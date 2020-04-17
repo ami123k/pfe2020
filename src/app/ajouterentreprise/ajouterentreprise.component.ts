@@ -23,7 +23,7 @@ export class AjouterentrepriseComponent implements OnInit {
   public get triggerObservable(): Observable<void> {
     return this.trigger.asObservable();
   }
-
+  isSuccessful = false;
 
   public get nextWebcamObservable(): Observable<boolean|string> {
     return this.nextWebcam.asObservable();
@@ -122,7 +122,7 @@ export class AjouterentrepriseComponent implements OnInit {
     this.progress.percentage = 0;
     this.currentFileUpload = this.selectedFiles.item(0);
     this.uploadService.pushFileToStorage(this.currentFileUpload, imageFile, this.description, this.name, this.categorie)
-      .subscribe(event => {
+      .subscribe(event => {this.isSuccessful = true,
       this.catservice.updateuser(this.tokenStorage.getUser().id, value)
         .subscribe(data => {alert('vous ete associer a cette entreprise'); this.router.navigateByUrl('/data'); });
       console.log(this.tokenStorage.getUser().id);

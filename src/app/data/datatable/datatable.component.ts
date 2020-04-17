@@ -32,6 +32,7 @@ export class DatatableComponent implements OnInit {
 
   private currentprod: Offre;
   private url: string;
+  isSuccessful = false;
 
   ngOnInit(): void {
     this.afficheroffre();
@@ -56,8 +57,8 @@ export class DatatableComponent implements OnInit {
     data.categorie = this.categorie;
 
 
-    this.catservice.save(this.catservice.host + 'offre/ajout', data).subscribe(aaa => {
-      console.log(aaa);
+    this.catservice.save(this.catservice.host + 'offre/ajout', data).subscribe(aaa => { this.isSuccessful = true;
+                                                                                        console.log(aaa);
     });
   }
 
@@ -70,11 +71,10 @@ export class DatatableComponent implements OnInit {
       });
   }
 
-
   onEdit(s) {
     console.log(s);
     const url = s._links.self.href;
-    this.router.navigateByUrl('update/' + btoa(url));
+    this.router.navigateByUrl('update/' + btoa(s.id_offre));
   }
   onlistpropo(s) {
     console.log(s);
@@ -126,6 +126,7 @@ export class DatatableComponent implements OnInit {
     console.log(s);
     this.router.navigateByUrl('camera/' + btoa(s.id_offre));
   }
+
 
 }
 export interface Equipeee {

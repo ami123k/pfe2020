@@ -33,7 +33,7 @@ export class UploadFileService {
     return this.http.get(this.baseUrl + '/listpropbyoff/' + id);
   }
   getlistoffrebycat(url): Observable<any> {
-    return this.http.get(this.baseUrl + '/offre/listoffrebycat?categorie=' + url);
+    return this.http.get(this.baseUrl + '/findpropositionByentreprise/' + url );
   }
 
   getlistoffrebymate(url): Observable<any> {

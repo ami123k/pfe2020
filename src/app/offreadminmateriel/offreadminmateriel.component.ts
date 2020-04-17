@@ -14,7 +14,7 @@ export class OffreadminmaterielComponent implements OnInit {
   constructor(private catservice: ServiceOffreService, private activatedRoute: ActivatedRoute,
               private router: Router , private uploadService: UploadFileService) {
   }
-
+  isSuccessful = false;
   @ViewChild('dataTable') table;
   public offres: Offre;
   public produits: any = undefined;
@@ -32,6 +32,7 @@ export class OffreadminmaterielComponent implements OnInit {
   private url: string;
 
   ngOnInit(): void {
+    this.isSuccessful = false;
     this.afficheroffre();
     this.dtOption = {
       paging: true,
@@ -54,7 +55,7 @@ export class OffreadminmaterielComponent implements OnInit {
     data.categorie = this.categorie;
 
 
-    this.catservice.save(this.catservice.host + 'offre/ajout', data).subscribe(aaa => {
+    this.catservice.save(this.catservice.host + 'offre/ajout', data).subscribe(aaa => {this.isSuccessful = true,
       console.log(aaa);
     });
   }

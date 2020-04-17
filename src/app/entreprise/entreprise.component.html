@@ -93,7 +93,7 @@
                     <th>logo</th>
                     <th>name entreprise</th>
                     <th>categorie</th>
-                    <th>offre pour </th>
+                    <th>proposition </th>
                     <th>details</th>
                   </tr>
                   </thead>
@@ -106,7 +106,7 @@
                     </div></td>
                     <td>{{s.name_entreprise}}</td>
                     <td>{{s.categories}}</td>
-                    <td><a class="btn btn-danger" (click)="findoffrebycategorie(s.categories)"><div class="fa fa-fw fa-eraser"></div>{{s.categories}}</a></td>
+                    <td><a class="btn btn-danger" (click)="findoffrebycategorie(s)"><div class="fa fa-fw fa-eraser"></div>proposition</a></td>
                     <td><a class="btn btn-success" (click)="details(s)"><div class="fa fa-fw fa-edit"></div> details</a></td>
                   </tr>
 
@@ -116,7 +116,7 @@
                     <th>logo</th>
                     <th>name entreprise</th>
                     <th>categorie</th>
-                    <th>offre pour </th>
+                    <th>proposition</th>
                     <th>details</th>
                   </tr>
                   </tfoot>

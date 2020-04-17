@@ -17,6 +17,7 @@ export class PropositionfournisseurComponent implements OnInit {
   public t1: proposition;
   public aa: string;
   public url: string;
+  public t2: any;
   public cuurentof: Offre ;
   dtOption: any = {};
   constructor( private uploadService: CameraService, private  router: Router , private tokenStorage: TokenStorageService,
@@ -26,11 +27,11 @@ export class PropositionfournisseurComponent implements OnInit {
 
     this.url = atob(this.activatedRoute.snapshot.params.id);
     console.log(this.url);
-    this.uploadService.findpropouserbyoffre(this.url, this.tokenStorage.getUser().id ).subscribe(e => {
+    this.uploadService.getFiles(this.url).subscribe(e => {
       this.t1 = e;
 
       this.uploadService.getentreprisebypropo(this.url).subscribe(k => {
-        this.t1.name_entreprise = k;
+        this.t2 = k;
         console.log(this.t1);
       });   });
 

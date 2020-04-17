@@ -87,7 +87,7 @@
 
 
       <form #f="ngForm"></form>
-      <td>  <div  *ngIf="s.validation === false "><img src="http://localhost:8080/files/valider-png-3.png" style="width:50px;height:40px"></div> <div  *ngIf="s.validation === true "><a class="btn btn-success" (click)="Validerproposition(s.id_proposition,f.value)"><div class="fa fa-heart-o"></div> valider</a></div></td>
+      <td>  <div  *ngIf="s.validation === false "><img src="http://localhost:8080/files/icone-valider-png-2-300x200-300x200.png" style="width:50px;height:40px"></div> <div  *ngIf="s.validation === true "><a class="btn btn-success" (click)="Validerproposition(s.id_proposition,f.value)"><div class="fa fa-info-circle"></div> valider</a></div></td>
       <td><button class="btn btn-info" (click)="details(s)" > <div class=" fa fa-fw fa-arrows-alt"></div>    details</button></td>
     </tr>
     </tbody>
@@ -107,17 +107,17 @@
     <table border="0" #dataTable  class="table-borderless" align="center" style="width:15% ">
     <thead>
     <tr>
-      <th><br></th>
+      <th>entreprise</th>
     </tr>
     </thead>
     <tbody>
-    <tr  *ngFor="let s of t1.name_entreprise" >
-      <td><br>s<br> <br></td>
+    <tr  *ngFor="let z of t2" >
+      <td><br><a href="/upload" ><img src="http://localhost:8080/files/{{z.type}}" style="width:40px;height:35px">{{z.name_entreprise}}</a> </td>
     </tr>
     </tbody>
     <tfoot>
     <tr>
-      <th><br><br></th>
+    <br>  <th><br></th>
     </tr>
     </tfoot>
   </table>

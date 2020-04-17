@@ -13,7 +13,7 @@ import {UploadFileService} from '../service/upload-file.service';
 export class OffreadmineducationComponent implements OnInit {
   constructor(private catservice: ServiceOffreService, private activatedRoute: ActivatedRoute,private uploadService: UploadFileService, private router: Router) {
   }
-
+  isSuccessful = false;
   @ViewChild('dataTable') table;
   public offres: Offre;
   public produits: any = undefined;
@@ -31,6 +31,7 @@ export class OffreadmineducationComponent implements OnInit {
   private url: string;
 
   ngOnInit(): void {
+    this.isSuccessful = false;
     this.afficheroffre();
     this.dtOption = {
       paging: true,
@@ -53,7 +54,7 @@ export class OffreadmineducationComponent implements OnInit {
     data.categorie = this.categorie;
 
 
-    this.catservice.save(this.catservice.host + 'offre/ajout', data).subscribe(aaa => {
+    this.catservice.save(this.catservice.host + 'offre/ajout', data).subscribe(aaa => {this.isSuccessful = true,
       console.log(aaa);
     });
   }
@@ -69,8 +70,8 @@ export class OffreadmineducationComponent implements OnInit {
 
   onEdit(s) {
     console.log(s);
-    const url = s._links.self.href;
-    this.router.navigateByUrl('update/' + btoa(url));
+
+    this.router.navigateByUrl('update/' + btoa(s.id_offre));
   }
   onlistpropo(s) {
     console.log(s);

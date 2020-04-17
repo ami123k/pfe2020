@@ -33,6 +33,9 @@ import {OffreadminfournitureComponent} from './offreadminfourniture/offreadminfo
 import {OffreadmininformatiqueComponent} from './offreadmininformatique/offreadmininformatique.component';
 import {OffreadminmaterielComponent} from './offreadminmateriel/offreadminmateriel.component';
 import {AddpropositiondetailsComponent} from './addpropositiondetails/addpropositiondetails.component';
+import {AvisComponent} from './avis/avis.component';
+import {DetailsentreprisewithoutcategorieComponent} from './detailsentreprisewithoutcategorie/detailsentreprisewithoutcategorie.component';
+import {PiechartComponent} from './piechart/piechart.component';
 
 
 const routes: Routes = [
@@ -69,6 +72,9 @@ const routes: Routes = [
   { path: 'admininformatique', component: OffreadmininformatiqueComponent },
   { path: 'adminmateriel', component: OffreadminmaterielComponent },
   { path: 'addproposition/:id', component: AddpropositiondetailsComponent },
+  { path: 'detailsentroprisewithout/:id', component: DetailsentreprisewithoutcategorieComponent },
+  { path: 'ajoutavis', component: AvisComponent },
+  { path: 'charts', component: PiechartComponent },
   { path: '', redirectTo: 'login', pathMatch: 'full' }
 ];
 

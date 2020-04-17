@@ -13,6 +13,7 @@ import * as $ from 'jquery';
 })
 export class PropositionComponent implements OnInit {
   public t1: proposition;
+  public t2: any;
   public aa: string;
   public url: string;
   public cuurentof: Offre ;
@@ -28,7 +29,7 @@ export class PropositionComponent implements OnInit {
       this.t1 = e;
 
       this.uploadService.getentreprisebypropo(this.url).subscribe(k => {
-          this.t1.name_entreprise = k;
+          this.t2 = k;
           console.log(this.t1);
         });   });
 

@@ -132,17 +132,18 @@ export class AddpropositiondetailsComponent implements OnInit {
     const blob = new Blob([int8Array], { type: 'image/jpeg' });
     return blob;
   }
-
+  isSuccessful = false;
   uploadfile() {
     this.progress.percentage = 0;
     this.currentFileUpload = this.selectedFiles.item(0);
     this.uploadService.uploaddetails(this.currentFileUpload  , this.description , this.id , this.url).subscribe(event => {
       if (event.type === HttpEventType.UploadProgress) {
         this.progress.percentage = Math.round(100 * event.loaded / event.total);
+
       } else if (event instanceof HttpResponse) {
         console.log('File is completely uploaded!');
       }
-    });
+      this.isSuccessful = true; });
 
     this.selectedFiles = undefined;
   }
@@ -164,7 +165,7 @@ export class AddpropositiondetailsComponent implements OnInit {
 // call method that creates a blob from dataUri
     const imageBlob = this.dataURItoBlob(this.webcamImage.imageAsBase64);
     const imageFile = new File([imageBlob], imageName, { type: 'image/jpeg' });
-    this.uploadService.addfile(imageFile , this.description , this.id , this.url ).subscribe(event => {
+    this.uploadService.addfile(imageFile , this.description , this.id , this.url ).subscribe(event => {this.isSuccessful = true;
     });
   }
 

@@ -136,9 +136,8 @@ url : string  ;
 
   }
   findoffrebycategorie(s) {
-    console.log(this.categorie);
-    const categorie = s.categorie;
-    this.router.navigateByUrl('offrebycat/' + s);
+    console.log(s);
+    this.router.navigateByUrl('offrebycat/' + btoa(s.logo));
   }
 
 
@@ -191,9 +190,10 @@ url : string  ;
     const blob = new Blob([int8Array], { type: 'image/jpeg' });
     return blob;
   }
-
-
-
+  details(s) {
+    console.log(s);
+    this.router.navigateByUrl('details/' + btoa(s.id_entreprise));
+  }
 
 
 

@@ -105,7 +105,7 @@ export class EntrepriseComponent implements OnInit {
   details(s) {
     console.log(s);
     const url = s._links.self.href;
-    this.router.navigateByUrl('details/' + btoa(url));
+    this.router.navigateByUrl('detailsentroprisewithout/' + btoa(url));
   }
   afficheroffre() {
     this.catservice.getresouce(this.catservice.host + 'offres')
@@ -160,9 +160,8 @@ export class EntrepriseComponent implements OnInit {
 
   }
   findoffrebycategorie(s) {
-    console.log(this.categorie);
-    const categorie = s.categorie;
-    this.router.navigateByUrl('offrebycat/' + s);
+console.log(s);
+    this.router.navigateByUrl('offrebycat/' + btoa(s.logo));
   }
 
 

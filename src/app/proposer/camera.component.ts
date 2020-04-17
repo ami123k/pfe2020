@@ -15,6 +15,20 @@ import {TokenStorageService} from '../auth/token-storage.service';
   styleUrls: ['./camera.component.css']
 })
 export class CameraComponent implements OnInit {
+  constructor( private uploadService: CameraService, private  router: Router ,
+               private activatedRoute: ActivatedRoute, private catservice: ServiceOffreService, private tokenStorageService: TokenStorageService) {this.captures = []; }
+
+
+
+
+  public get triggerObservable(): Observable<void> {
+    return this.trigger.asObservable();
+  }
+
+
+  public get nextWebcamObservable(): Observable<boolean|string> {
+    return this.nextWebcam.asObservable();
+  }
   roles: string[];
   isLoggedIn = false;
   showAdminBoard = false;
@@ -36,20 +50,6 @@ export class CameraComponent implements OnInit {
   public allowCameraSwitch = true;
   public multipleWebcamsAvailable = false;
   public deviceId: string;
-  constructor( private uploadService: CameraService, private  router: Router ,
-               private activatedRoute: ActivatedRoute, private catservice: ServiceOffreService, private tokenStorageService: TokenStorageService) {this.captures = []; }
-
-
-
-
-  public get triggerObservable(): Observable<void> {
-    return this.trigger.asObservable();
-  }
-
-
-  public get nextWebcamObservable(): Observable<boolean|string> {
-    return this.nextWebcam.asObservable();
-  }
   public videoOptions: MediaTrackConstraints = {
 // width: {ideal: 1024},
 // height: {ideal: 576}
@@ -61,6 +61,8 @@ export class CameraComponent implements OnInit {
   private nextWebcam: Subject<boolean|string> = new Subject<boolean|string>();
 
   public webcamImage: WebcamImage = null;
+  isSuccessful = false;
+  display = false ;
 
   ngOnInit() {
 
@@ -85,7 +87,6 @@ export class CameraComponent implements OnInit {
     this.catservice.getre(this.url).subscribe(data => {this.cuurentof = data; },
       error1 => {console.log(error1); });
   }
-
 
   handleError(error) {
     console.log('Error: ', error);
@@ -136,8 +137,8 @@ dataURItoBlob(dataURI) {
   uploadfile() {
     this.progress.percentage = 0;
     this.currentFileUpload = this.selectedFiles.item(0);
-    this.uploadService.pushFile(this.currentFileUpload  , this.description , this.id , this.cuurentof.id_offre).subscribe(event => {
-      if (event.type === HttpEventType.UploadProgress) {
+    this.uploadService.pushFile(this.currentFileUpload  , this.description , this.id , this.cuurentof.id_offre).subscribe(event => {this.isSuccessful = true;
+                                                                                                                                    if (event.type === HttpEventType.UploadProgress) {
         this.progress.percentage = Math.round(100 * event.loaded / event.total);
       } else if (event instanceof HttpResponse) {
         console.log('File is completely uploaded!');
@@ -152,6 +153,7 @@ dataURItoBlob(dataURI) {
     this.selectedFiles = event.target.files;
   }
 uploadwebimg() {
+  this.display = true;
   const date = new Date().valueOf();
   let text = '';
   const possibleText = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -163,10 +165,11 @@ uploadwebimg() {
 // call method that creates a blob from dataUri
   const imageBlob = this.dataURItoBlob(this.webcamImage.imageAsBase64);
   const imageFile = new File([imageBlob], imageName, { type: 'image/jpeg' });
-  console.log(this.cuurentof.id_offre)
+  console.log(this.cuurentof.id_offre);
   this.uploadService.pushFileToStorage(imageFile , this.description , this.id , this.cuurentof.id_offre ).subscribe(event => {
   });
-}
+
+  }
   uploadimageforinformatique() {
     const date = new Date().valueOf();
     let text = '';
@@ -179,8 +182,8 @@ uploadwebimg() {
 // call method that creates a blob from dataUri
     const imageBlob = this.dataURItoBlob(this.webcamImage.imageAsBase64);
     const imageFile = new File([imageBlob], imageName, { type: 'image/jpeg' });
-    console.log(this.cuurentof.id_offre)
-    this.uploadService.addfile(imageFile , this.description , this.id , this.url ).subscribe(event => {
+    console.log(this.cuurentof.id_offre);
+    this.uploadService.addfile(imageFile , this.description , this.id , this.url ).subscribe(event => {this.isSuccessful = true;
     });
   }
 

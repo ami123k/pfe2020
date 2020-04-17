@@ -9,17 +9,21 @@ import {Offre} from '../model/offre';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+  constructor(private tokenStorageService: TokenStorageService, private catservice: ServiceOffreService) {
+  }
+
   roles: string[];
   isLoggedIn = false;
-  showAdminBoard = false;
-  showModeratorBoard = false;
+  entreprise: string;
   username: string;
   email: string;
   Role: Role[] = [
     {value: 'ROLE_ADMIN', viewValue: 'financier'},
     {value: 'ROLE_MODERATOR', viewValue: 'fournisseur'}];
   public offres: Offre;
-  constructor(private tokenStorageService: TokenStorageService,  private catservice: ServiceOffreService) { }
+
+  public avis: any;
+  id: number;
 
   ngOnInit(): void {
     this.isLoggedIn = !!this.tokenStorageService.getToken();
@@ -30,8 +34,10 @@ export class ProfileComponent implements OnInit {
       this.username = user.username;
       this.email = this.tokenStorageService.getUser().email;
       this.afficheroffre();
+      this.afficheravis();
     }
   }
+
   afficheroffre() {
     this.catservice.getresouce(this.catservice.host + 'offres')
       .subscribe(res => {
@@ -40,6 +46,16 @@ export class ProfileComponent implements OnInit {
         console.log(this.offres);
       });
   }
+
+  afficheravis() {
+    this.catservice.getresouce(this.catservice.host + 'listavis')
+      .subscribe(res => {
+        this.avis = res;
+        console.log(res);
+      });
+  }
+
+
 }
 export interface Role {
   value: string;

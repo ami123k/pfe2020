@@ -1,0 +1,40 @@
+
+<div class="container">
+
+  <div class="panel panel-default" id="parent">
+
+    <div class="panel-body" id ="child-left">
+      <form *ngIf="!isSuccessful"
+            name="form"
+            (ngSubmit)="f.form.valid && addavis()"
+            #f="ngForm"
+            novalidate>
+
+
+        <div class="form-group">
+          <label for="descriptions" > Description</label>
+          <textarea id="descriptions"   #descriptions="ngModel" required
+                    minlength="3"
+                    maxlength="2000" class="form-control" type="text" name="description" ngModel [(ngModel)]="description"></textarea>
+        </div>
+        <div class="alert-danger" *ngIf="f.submitted && descriptions.invalid">
+          <div *ngIf="descriptions.errors.required">description is required</div>
+          <div *ngIf="descriptions.errors.minlength">
+            description must be at least 3 characters
+          </div>
+          <div *ngIf="descriptions.errors.maxlength">
+            description must be at most 20 characters
+          </div>
+        </div>
+        <button class="btn btn-success" type="submit" >avis</button>
+      </form>
+    </div>
+</div>
+</div><div class="content-section implementation">
+
+
+  <p-rating [(ngModel)]="val2" (onRate)="handleRate($event)" (onCancel)="handleCancel($event)"></p-rating> <span *ngIf="msg" style="margin-left:10px">{{msg}}</span>
+
+
+
+</div>

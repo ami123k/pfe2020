@@ -1,0 +1,40 @@
+
+<div class="main-content" style="margin-top: -5px">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title ">Statistique </h4>
+          </div>
+          <div class="card-body">
+<h2>list des proposition par entreprises </h2>
+
+            <div style="display: block">
+              <canvas baseChart
+                      [colors]="chartColors"
+                      [data]="pieChartData"
+                      [labels]="pieChartLabels"
+                      [chartType]="pieChartType"></canvas>
+            </div>
+            <div style="display: block">
+             <h2>list des propositions par offre</h2>
+              <canvas baseChart
+                      [colors]="chartColors"
+                      [data]="pieChartData2"
+                      [labels]="pieChartLabels2"
+                      [chartType]="pieChartType2"></canvas>
+            </div>
+            <br> <br>
+
+
+
+
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
