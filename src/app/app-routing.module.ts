@@ -36,6 +36,8 @@ import {AddpropositiondetailsComponent} from './addpropositiondetails/addproposi
 import {AvisComponent} from './avis/avis.component';
 import {DetailsentreprisewithoutcategorieComponent} from './detailsentreprisewithoutcategorie/detailsentreprisewithoutcategorie.component';
 import {PiechartComponent} from './piechart/piechart.component';
+import {EntrepriseuserComponent} from './entrepriseuser/entrepriseuser.component';
+import {ListusersComponent} from './listusers/listusers.component';
 
 
 const routes: Routes = [
@@ -71,6 +73,8 @@ const routes: Routes = [
   { path: 'adminfourniture', component: OffreadminfournitureComponent },
   { path: 'admininformatique', component: OffreadmininformatiqueComponent },
   { path: 'adminmateriel', component: OffreadminmaterielComponent },
+  { path: 'entrepriseuser', component: EntrepriseuserComponent },
+  { path: 'listallusers', component: ListusersComponent },
   { path: 'addproposition/:id', component: AddpropositiondetailsComponent },
   { path: 'detailsentroprisewithout/:id', component: DetailsentreprisewithoutcategorieComponent },
   { path: 'ajoutavis', component: AvisComponent },

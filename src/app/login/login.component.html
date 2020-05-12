@@ -1,71 +1,70 @@
-<div class="login-box">
-  <div class="login-logo">
-    <a href="#"><b>Admin</b>LTE</a>
-  </div>
-  <!-- /.login-logo -->
-  <div class="login-box-body">
-    <p class="login-box-msg">Sign in to start your session</p>
-    <form
-      *ngIf="!isLoggedIn"
-      name="form"
-      (ngSubmit)="f.form.valid && onSubmit()"
-      #f="ngForm"
-      novalidate
-    >
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
-      <div class="form-group has-feedback">
-        <label for="username">Username</label>
-        <input id="username"
-               type="text"
-               class="form-control"
-               name="username"
-               [(ngModel)]="form.username"
-               required
-               #username="ngModel"
-        />
-        <div
-          class="alert alert-danger"
-          role="alert"
-          *ngIf="f.submitted && username.invalid"
-        >
-          Username is required!
-        </div>
-      </div>
-      <div class="form-group has-feedback">
-        <label for="password">Password</label>
-        <input id="password"
-               type="password"
-               class="form-control"
-               name="password"
-               [(ngModel)]="form.password"
-               required
-               minlength="6"
-               #password="ngModel"
-        />
-        <div
-          class="alert alert-danger"
-          role="alert"
-          *ngIf="f.submitted && password.invalid"
-        >
-          <div *ngIf="password.errors.required">Password is required</div>
-          <div *ngIf="password.errors.minlength">
-            Password must be at least 6 characters
+<form
+  *ngIf="!isLoggedIn"
+  name="form"
+  (ngSubmit)="f.form.valid && onSubmit()"
+  #f="ngForm"
+  novalidate
+>
+
+  <div class="login-reg-panel">
+
+
+    <div class="register-info-box">
+
+      <h2>vous n'avez pas un compte?</h2>
+      <p>rejoignez nous</p>
+      <a [routerLink]="'/register'" class="text-center">register</a>
+      <input type="radio" name="active-log-panel" id="log-login-show">
+    </div>
+
+    <div class="white-panel">
+      <img src="http://localhost:8080/files/fournisseur.png"  alt="" width="120px" height="100px">
+      <div class="login-show">
+
+        <h4 align="center">Authentification                             </h4>
+        <div class="form-group has-feedback">
+          <label for="username">nom d'utilisateur</label>
+          <input id="username"
+                 type="text"
+                 class="form-control"
+                 name="username"
+                 [(ngModel)]="form.username"
+                 required
+                 #username="ngModel"
+          />
+          <div
+            class="alert alert-danger"
+            role="alert"
+            *ngIf="f.submitted && username.invalid"
+          >
+            Username is required!
           </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-8">
-          <div class="checkbox icheck">
-            <label>
-              <input type="checkbox"> Remember Me
-            </label>
+        <div class="form-group has-feedback">
+          <label for="password">mot de passe </label>
+          <input id="password"
+                 type="password"
+                 class="form-control"
+                 name="password"
+                 [(ngModel)]="form.password"
+                 required
+                 minlength="6"
+                 #password="ngModel"
+          />
+          <div
+            class="alert alert-danger"
+            role="alert"
+            *ngIf="f.submitted && password.invalid"
+          >
+            <div *ngIf="password.errors.required">Password is required</div>
+            <div *ngIf="password.errors.minlength">
+              Password must be at least 6 characters
+            </div>
           </div>
         </div>
-        <!-- /.col -->
-        <div class="col-xs-4">
-          <button class="btn btn-primary btn-block btn-flat">Sign In</button>
-        </div>
-        <!-- /.col -->
+        <button class="btn btn-primary btn-block btn-flat">Sign In</button>
       </div>
       <div class="form-group">
         <div
@@ -78,14 +77,9 @@
       </div>
 
 
-      <!-- /.social-auth-links -->
-
-      <a [routerLink]="'/register'" class="text-center">Register a new membership</a>
-    </form>
-    <div class="alert alert-success" *ngIf="isLoggedIn">
-      Logged in as {{ roles }}.
     </div>
   </div>
-  <!-- /.login-box-body -->
+</form>
+<div class="alert alert-success" *ngIf="isLoggedIn">
+  Logged in as {{ roles }}.
 </div>
-<!-- /.login-box -->

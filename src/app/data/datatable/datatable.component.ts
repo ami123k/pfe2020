@@ -21,7 +21,7 @@ export class DatatableComponent implements OnInit {
    public offres: Offre;
   public produits: any = undefined;
   dtOption: any = {};
-
+abc = 0;
   equipes: Equipeee[] = [
     {value: 'fourniture', viewValue: 'fourniture'},
     {value: 'informatique', viewValue: 'informatique'},
@@ -30,12 +30,12 @@ export class DatatableComponent implements OnInit {
   ];
   categorie;
 
-  private currentprod: Offre;
+  public currentprod: Offre;
   private url: string;
   isSuccessful = false;
 
   ngOnInit(): void {
-    this.afficheroffre();
+
     this.dtOption = {
       paging: true,
       ordering: true,
@@ -46,7 +46,7 @@ export class DatatableComponent implements OnInit {
     $(() => {
       $('table.table-striped').DataTable(this.dtOption);
     });
-
+    this.afficheroffre();
   }
 
   selected() {
@@ -62,6 +62,12 @@ export class DatatableComponent implements OnInit {
     });
   }
 
+  createbutton() {
+
+    this.abc = 1 ;
+    this.router.navigateByUrl('data' );
+  }
+
   afficheroffre() {
     this.catservice.getresouce(this.catservice.host + 'offres')
       .subscribe(res => {
@@ -72,9 +78,9 @@ export class DatatableComponent implements OnInit {
   }
 
   onEdit(s) {
-    console.log(s);
-    const url = s._links.self.href;
-    this.router.navigateByUrl('update/' + btoa(s.id_offre));
+    this.display = true;
+    this.catservice.getre('http://localhost:8080/offres/' + s.id_offre).subscribe(data => {this.currentprod = data; },
+      error1 => {console.log(error1); });
   }
   onlistpropo(s) {
     console.log(s);
@@ -108,7 +114,7 @@ export class DatatableComponent implements OnInit {
   }
   onDelete(equipe_ID): void {
     console.log(this.offres.id_offre);
-    if (confirm('Voulez-vous vraiment supprimer cette equipe?')) {
+    if (confirm('Voulez-vous vraiment supprimer cette offre?')) {
       console.log(equipe_ID);
       this.catservice.delete(equipe_ID).subscribe(data => {
         console.log(equipe_ID);
@@ -126,12 +132,19 @@ export class DatatableComponent implements OnInit {
     console.log(s);
     this.router.navigateByUrl('camera/' + btoa(s.id_offre));
   }
-
-
+  display = false ;
+  onupdateprod(value: any) {
+    this.catservice.update('http://localhost:8080/offre/Update/' + this.currentprod.id_offre, value).subscribe(data => {alert('mise ajour terminer'),  this.isSuccessful = true; this.router.navigateByUrl('/data'); });
+  }
+}
+export interface Equipe {
+  value: string;
+  viewValue: string;
 }
 export interface Equipeee {
   value: string;
   viewValue: string;
 }
+
 
 

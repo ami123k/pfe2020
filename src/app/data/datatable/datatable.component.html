@@ -8,7 +8,6 @@
         <h3>veuillez Proposer</h3>
         <p>
           <a href="/data" class="btn btn-primary white">tous les offes</a>
-          <a href="#" class="btn btn-primary solid">Get In Touch</a>
         </p>
       </div>
     </div>
@@ -76,20 +75,20 @@
 
         <!-- /.box-header -->
         <div class="box-body" id="child-left">
-          <table #dataTable  class="table table-bordered table-striped" align="center" style="width:85% ">
+          <table #dataTable *ngIf="offres"  class="table table-bordered table-striped" align="center" style="width:85% ">
   <thead>
   <tr>
-    <th>Name</th>
+    <th>nom</th>
     <th>description</th>
     <th>quantite</th>
     <th>categorie</th>
-    <th>delete</th>
-    <th>update</th>
+    <th>supprimer</th>
+    <th>modifier</th>
     <th>proposition</th>
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let s of offres">
+  <tr *ngFor="let s of offres" >
     <td>{{s.name}}</td>
     <td>{{s.description}}</td>
     <td>{{s.quantite}}</td>
@@ -102,12 +101,12 @@
   </tbody>
   <tfoot>
   <tr>
-    <th>Name</th>
+    <th>nom</th>
     <th>description</th>
     <th>quantite</th>
     <th>categorie</th>
-    <th>delete</th>
-    <th>update</th>
+    <th>supprimer</th>
+    <th>modifier</th>
     <th>proposition</th>
   </tr>
   </tfoot>
@@ -115,13 +114,16 @@
         </div>
         <!-- /.box-body -->
         <div class="col-md-6" id="child-right">
-          <!-- general form elements -->
-          <br><br><br><br><br><br><br><br>
-          <div class="box box-primary">
+  <!-- general form elements -->
+  <br><br><br><br><br><br><br><br>
+          <div *ngIf="abc===0">
+            <a class="btn btn-success" (click)="createbutton()"> créer offre</a>
+          </div>
+          <div class="box box-primary" *ngIf="abc===1">
 
             <!-- /.box-header -->
             <!-- form start -->
-            <form *ngIf="!isSuccessful"
+            <form  *ngIf="!isSuccessful "
                   name="form"
                   (ngSubmit)="f.form.valid && onsaveoffre(f.value)"
                   #f="ngForm"
@@ -194,4 +196,72 @@
 </div>
 
 
+<p-dialog header="modifier offre " [(visible)]="display" [style]="{width: '50vw'}" [baseZIndex]="10000">
+<div class="container">
 
+  <div class="panel panel-default" >
+
+    <div class="panel-body" *ngIf="currentprod" >
+      <form *ngIf="!isSuccessful"
+            name="form"
+            (ngSubmit)="f.form.valid && onupdateprod(f.value)"
+            #f="ngForm"
+            novalidate>
+        <div class="form-group">
+
+          <label for="usernameupdate" class="control-label"> Name</label>
+
+          <input id="usernameupdate" class="form-control"
+                 required
+                 minlength="3"
+                 maxlength="20"
+                 #username="ngModel" type="text" name="name" ngModel [(ngModel)]="currentprod.name">
+        </div>
+        <div class="alert-danger" *ngIf="f.submitted && username.invalid">
+          <div *ngIf="username.errors.required">Username is required</div>
+          <div *ngIf="username.errors.minlength">
+            Username must be at least 3 characters
+          </div>
+          <div *ngIf="username.errors.maxlength">
+            Username must be at most 20 characters
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="descriptionsupdate" > Description</label>
+          <textarea id="descriptionsupdate"   #descriptions="ngModel" required
+                    minlength="3"
+                    maxlength="2000" class="form-control" type="text" name="description" ngModel [(ngModel)]="currentprod.description"></textarea>
+        </div>
+        <div class="alert-danger" *ngIf="f.submitted && descriptions.invalid">
+          <div *ngIf="descriptions.errors.required">description is required</div>
+          <div *ngIf="descriptions.errors.minlength">
+            description must be at least 3 characters
+          </div>
+          <div *ngIf="descriptions.errors.maxlength">
+            description must be at most 20 characters
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="quantiteupdate" class="control-label"> Quantite</label>
+          <input id="quantiteupdate" class="form-control"  required type="number" name="quantite" #quantite="ngModel" ngModel [(ngModel)]="currentprod.quantite">
+        </div>
+        <div class="alert-danger" *ngIf="f.submitted && quantite.invalid">
+          <div *ngIf="quantite.errors.required">quantite is required</div></div>
+        <label>Choisissez une categorie</label>
+        <select  [(ngModel)]="currentprod.categorie" name="categorie" (change)="selected()">
+          <option *ngFor="let food of equipes" [value]="food.value"  >
+            {{food.viewValue}}
+          </option>
+        </select>
+        <button class="btn btn-success" type="submit" >update</button>
+        <br> <br>
+      </form>
+    </div>
+    <div [style]="{width: '300px'}"  >
+      <br><br><br>
+
+    </div>
+  </div>
+</div>
+
+</p-dialog>

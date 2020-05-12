@@ -12,7 +12,7 @@ import {HttpHandler} from '@angular/common/http';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-   roles: string[];
+   roles: string;
   isLoggedIn = false;
   showAdminBoard = false;
   showModeratorBoard = false;

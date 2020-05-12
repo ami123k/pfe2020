@@ -74,20 +74,23 @@
       <tr>
         <th>proposition</th>
         <th>description</th>
+        <th>entreprise</th>
+        <th>logo</th>
         <th>valider</th>
         <th>details</th>
       </tr>
       </thead>
       <tbody>
       <tr  *ngFor="let s of t1" >
-        <td><img src="http://localhost:8080/files/{{s.name}}" style="width:50px;height:40px"></td>
+        <td><img src="http://localhost:8080/files/{{s.propositionscanner}}" style="width:50px;height:40px"></td>
         <td>{{s.description}}</td>
 
+  <td>{{s.name_entreprise}}</td>
 
-
+        <td><img src="http://localhost:8080/files/{{s.image_entreprise}}" style="width:50px;height:40px"></td>
 
         <form #f="ngForm"></form>
-        <td>  <div  *ngIf="s.validation === false "><img src="http://localhost:8080/files/icone-valider-png-2-300x200-300x200.png" style="width:50px;height:50px"></div> <div  *ngIf="s.validation === true "><img src="http://localhost:8080/files/reset_restart_repeat_reload-512.png" style="width:50px;height:40px"></div></td>
+        <td>  <div  *ngIf="s.validation === false "><img src="http://localhost:8080/files/icone-valider-png-2-300x200-300x200.png" style="width:47px;height:40px"></div> <div  *ngIf="s.validation === true "><img src="http://localhost:8080/files/reset_restart_repeat_reload-512.png" style="width:47px;height:40px"></div></td>
         <td><button class="btn btn-info" (click)="details(s)" > <div class=" fa fa-fw fa-arrows-alt"></div>    details</button></td>
       </tr>
       </tbody>
@@ -95,31 +98,16 @@
       <tr>
         <th>proposition</th>
         <th>description</th>
+        <th>entreprise</th>
+        <th>logo</th>
         <th>valider</th>
-        <th> Details</th>
+        <th>details</th>
 
       </tr>
       </tfoot>
     </table>
   </div>
   <div >
-    <br><br><br><br>
-    <table border="0" #dataTable  class="table-borderless" align="center" style="width:15% ">
-      <thead>
-      <tr>
-        <th>entreprise</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr  *ngFor="let z of t2" >
-        <td><br><a href="/upload" ><img src="http://localhost:8080/files/{{z.type}}" style="width:40px;height:35px">{{z.name_entreprise}}</a> </td>
-      </tr>
-      </tbody>
-      <tfoot>
-      <tr>
-        <br>  <th><br></th>
-      </tr>
-      </tfoot>
-    </table>
+
   </div>
 </div>

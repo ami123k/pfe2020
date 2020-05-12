@@ -11,12 +11,12 @@ import {Label} from 'ng2-charts';
 })
 export class PiechartComponent implements OnInit {
   public pieChartLabels = [];
-  public pieChartData = [];
+  public barChartLegendpieChartData = [];
   public pieChartType = 'pie';
   public pieChartLabels2 = [];
   public pieChartData2 = [];
   public pieChartType2 = 'pie';
-
+  public pieChartData = [];
   // 2eme
   public barChartOptions = {
     scaleShowVerticalLines: false,
@@ -26,8 +26,6 @@ export class PiechartComponent implements OnInit {
   barChartLegend = true;
   barChartPlugins = [];
   barChartLabels = [];
-  public barChartLegend = true;
-  public barChartData = [];
   equipes: Array<any>;
   user: Statistique[] = [];
   abc: Statistique2[] = [];

@@ -53,8 +53,19 @@ export class ServiceOffreService {
     console.log('zz');
     console.log(offreid);
   }
+
+  deleteentreprise(entrepriseid: number): Observable<any> {
+    console.log('aa');
+    console.log(entrepriseid);
+    return this.httpClient.delete<Offre>(this.host + 'deleteentreprise/' + entrepriseid);
+    console.log('zz');
+    console.log(entrepriseid);
+  }
   public updateuser(url, data): Observable<any> {
     return this.httpClient.put<any>(this.host + 'Updateuser/' + url, data);
+  }
+  public updateroleuser(url, data): Observable<any> {
+    return this.httpClient.put<any>(this.host + 'Updateroleuser/' + url, data);
   }
   deleteuser(userid: number): Observable<any> {
     console.log('aa');

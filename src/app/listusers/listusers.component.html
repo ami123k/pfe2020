@@ -1,0 +1,43 @@
+<!-- Parallax 2 start -->
+<section class="parallax parallax2">
+  <div class="parallax-overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <h2>Offres D' Esprit</h2>
+        <h3>veuillez Proposer</h3>
+        <p>
+          <a href="/offrefournisseur" class="btn btn-primary white">tous les offes</a>
+          <a href="#" class="btn btn-primary solid">Get In Touch</a>
+        </p>
+      </div>
+    </div>
+  </div><!-- Container end -->
+</section><!-- Parallax 2 end -->
+
+<br><br><br><br>
+<table #dataTable id="table1"  class="table table-bordered table-striped" align="center" style="width:85% ">
+  <thead>
+  <tr>
+    <th>username</th>
+    <th>email</th>
+    <th>supprimer</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr  *ngFor="let s of currentprod" >
+    <td>{{s.username}}</td>
+    <td>{{s.email}}</td>
+    <form #f="ngForm"></form>
+
+    <td><a class="btn alert-danger" (click)="onDelete(s.id)">supprimer</a></td>
+  </tr>
+  </tbody>
+  <tfoot>
+  <tr>
+    <th>username</th>
+    <th>email</th>
+    <th>supprimer</th>
+  </tr>
+  </tfoot>
+</table>

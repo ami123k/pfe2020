@@ -29,11 +29,7 @@ export class PropositionfournisseurComponent implements OnInit {
     console.log(this.url);
     this.uploadService.getFiles(this.url).subscribe(e => {
       this.t1 = e;
-
-      this.uploadService.getentreprisebypropo(this.url).subscribe(k => {
-        this.t2 = k;
-        console.log(this.t1);
-      });   });
+    });
 
     this.dtOption = {
       paging: true,

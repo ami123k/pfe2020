@@ -51,7 +51,7 @@ this.onprofile();
 
   }
   onprofile() {
-    this.router.navigateByUrl('profile');
+    this.router.navigateByUrl('home');
   }
 
   reloadPage() {

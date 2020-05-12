@@ -141,6 +141,16 @@ url: string ;
   }
 
 
+  onDelete(equipe_ID, value: any): void {
+    if (confirm('Voulez-vous vraiment supprimer cette entreprise?')) {
+
+      this.catservice.updateroleuser(equipe_ID, value)
+        .subscribe(data2 => {alert('fournisseur vers user'); this.router.navigateByUrl('/upload'); this.catservice.deleteentreprise(equipe_ID).subscribe(data => {
+          console.log(equipe_ID);
+          console.log('ok');
+        }); });
+    }
+  }
 
 
   public triggerSnapshot(): void {

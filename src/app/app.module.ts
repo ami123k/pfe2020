@@ -29,7 +29,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {GalleriaModule} from 'primeng/galleria';
 import { FindoffrebycategorieComponent } from './findoffrebycategorie/findoffrebycategorie.component';
 import {ScrollPanelModule} from 'primeng/scrollpanel';
-import { CarouselModule } from 'ngx-bootstrap';
+
 import { CameraComponent } from './proposer/camera.component';
 import {WebcamModule} from 'ngx-webcam';
 import { PropositionComponent } from './proposition/proposition.component';
@@ -64,6 +64,11 @@ import { MymodalcomponentComponent } from './mymodalcomponent/mymodalcomponent.c
 import { ChartsModule } from 'ng2-charts';
 import { DetailsentreprisewithoutcategorieComponent } from './detailsentreprisewithoutcategorie/detailsentreprisewithoutcategorie.component';
 import { PiechartComponent } from './piechart/piechart.component';
+import { DossierComponent } from './dossier/dossier.component';
+import { EntrepriseuserComponent } from './entrepriseuser/entrepriseuser.component';
+import { ListusersComponent } from './listusers/listusers.component';
+import {DataTablesModule} from 'angular-datatables';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -109,7 +114,10 @@ import { PiechartComponent } from './piechart/piechart.component';
     AvisComponent,
     MymodalcomponentComponent,
     DetailsentreprisewithoutcategorieComponent,
-    PiechartComponent
+    PiechartComponent,
+    DossierComponent,
+    EntrepriseuserComponent,
+    ListusersComponent
   ],
   imports: [
     BrowserModule,
@@ -126,6 +134,7 @@ import { PiechartComponent } from './piechart/piechart.component';
     WebcamModule,
     DialogModule,
     ResizableModule,
+    DataTablesModule,
     RatingModule,
     ChartsModule,
     MatStepperModule,
@@ -135,7 +144,7 @@ import { PiechartComponent } from './piechart/piechart.component';
         { name: 'required', message: 'This field is required' },
       ],
     }),
-    CarouselModule.forRoot()
+
 
   ],
   providers: [httpInterceptorProviders, { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

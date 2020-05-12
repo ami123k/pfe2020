@@ -63,6 +63,15 @@
         </a>
 
       </li>
+      <li *ngIf="roles =='ROLE_ADMIN' " href="/data" >
+        <a href="/data">
+          <span href="/data">list des offres</span>
+          <span class="pull-right-container">
+            <span class="label label-primary pull-right">4</span>
+          </span>
+        </a>
+
+      </li>
       <li  *ngIf="roles =='ROLE_ADMIN' "  href="/listusers">
         <a href="/listusers">
           <span>list des utilisateurs</span>

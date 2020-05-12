@@ -74,7 +74,7 @@ export class CameraService {
   }
 
   getFiles(idoffre: string ): Observable<any> {
-    return this.http.get(this.baseUrl + 'listpropbyoff/' + idoffre);
+    return this.http.get(this.baseUrl + 'propositionentreprise/' + idoffre);
   }
   getentreprisebypropo(idoffre: string ): Observable<any> {
     return this.http.get(this.baseUrl + 'listentreprisebypropo/' + idoffre);
@@ -87,6 +87,10 @@ export class CameraService {
   }
   findpropouserbyoffre(idoffre: string, iduser: number ): Observable<any> {
     return this.http.get(this.baseUrl + 'findpropouserbyoffre/' + iduser + '/' + idoffre);
+  }
+
+  userproposition(id: string ): Observable<any> {
+    return this.http.get(this.baseUrl + 'userproposition/' + id);
   }
 
 }

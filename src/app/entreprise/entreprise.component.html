@@ -18,8 +18,7 @@
     <div class="row">
       <div class="col-md-12 heading">
         <span class="title-icon float-left"><i class="fa fa-cogs"></i></span>
-        <h2 class="title">tous les Collaborateurs<span class="title-desc">A Quality Experience Team with 4 years
-						experience</span></h2>
+        <h2 class="title">tous les fournisseurs<span class="title-desc"></span></h2>
       </div>
     </div><!-- Title row end -->
 
@@ -73,7 +72,7 @@
     <section id="main-container">
       <div class="container" id="parent">
         <div class="row">
-
+<form #f="ngForm">
           <!-- Blog start -->
           <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
 
@@ -95,6 +94,8 @@
                     <th>categorie</th>
                     <th>proposition </th>
                     <th>details</th>
+                    <th>supprimer</th>
+
                   </tr>
                   </thead>
                   <tbody>
@@ -106,8 +107,9 @@
                     </div></td>
                     <td>{{s.name_entreprise}}</td>
                     <td>{{s.categories}}</td>
-                    <td><a class="btn btn-danger" (click)="findoffrebycategorie(s)"><div class="fa fa-fw fa-eraser"></div>proposition</a></td>
+                    <td><a class="btn btn-info" (click)="findoffrebycategorie(s)"><div class="fa fa-fw fa-eraser"></div>proposition</a></td>
                     <td><a class="btn btn-success" (click)="details(s)"><div class="fa fa-fw fa-edit"></div> details</a></td>
+                    <td><a class="btn btn-danger" (click)="onDelete(s.type,f.value)"><div class="fa fa-fw fa-edit"></div> supprimer</a></td>
                   </tr>
 
                   </tbody>
@@ -130,7 +132,7 @@
 
 
 
-          </div>
+          </div></form>
           <!--/ Content col end -->
 
           <!-- sidebar start -->

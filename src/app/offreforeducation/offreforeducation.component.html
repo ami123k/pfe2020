@@ -8,7 +8,6 @@
         <h3>veuillez Proposer</h3>
         <p>
           <a href="/offrefournisseur" class="btn btn-primary white">tous les offes</a>
-          <a href="#" class="btn btn-primary solid">Get In Touch</a>
         </p>
       </div>
     </div>
@@ -75,11 +74,11 @@
     <div class="box" id="parent">
 
       <!-- /.box-header -->
-      <div class="box-body" id="child-left">
+      <div *ngIf="offres" class="box-body" id="child-left">
         <table #dataTable  class="table table-bordered table-striped" align="center" style="width:70% ">
           <thead>
           <tr>
-            <th>Name</th>
+            <th>nom</th>
             <th>description</th>
             <th>quantite</th>
             <th>categorie</th>
@@ -100,7 +99,7 @@
           </tbody>
           <tfoot>
           <tr>
-            <th>Name</th>
+            <th>nom</th>
             <th>description</th>
             <th>quantite</th>
             <th>categorie</th>

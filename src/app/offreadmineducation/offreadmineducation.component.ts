@@ -27,7 +27,7 @@ export class OffreadmineducationComponent implements OnInit {
   ];
   categorie;
 
-  private currentprod: Offre;
+   currentprod: Offre;
   private url: string;
 
   ngOnInit(): void {
@@ -45,7 +45,12 @@ export class OffreadmineducationComponent implements OnInit {
     });
 
   }
-
+  display = false ;
+  onEdit(s) {
+    this.display = true;
+    this.catservice.getre('http://localhost:8080/offres/' + s.id_offre).subscribe(data => {this.currentprod = data; },
+      error1 => {console.log(error1); });
+  }
   selected() {
     console.log(this.categorie);
   }
@@ -58,7 +63,12 @@ export class OffreadmineducationComponent implements OnInit {
       console.log(aaa);
     });
   }
+  abc = 0;
+  createbutton() {
 
+    this.abc = 1 ;
+    this.router.navigateByUrl('data' );
+  }
   afficheroffre() {
     this.categorie = this.activatedRoute.snapshot.params.id;
     console.log(this.categorie);
@@ -67,12 +77,10 @@ export class OffreadmineducationComponent implements OnInit {
 
   }
 
-
-  onEdit(s) {
-    console.log(s);
-
-    this.router.navigateByUrl('update/' + btoa(s.id_offre));
+  onupdateprod(value: any) {
+    this.catservice.update('http://localhost:8080/offre/Update/' + this.currentprod.id_offre, value).subscribe(data => {alert('mise ajour terminer'),  this.isSuccessful = true; this.router.navigateByUrl('/data'); });
   }
+
   onlistpropo(s) {
     console.log(s);
     this.router.navigateByUrl('onlistpropo/' + btoa(s.id_offre));
@@ -105,7 +113,7 @@ export class OffreadmineducationComponent implements OnInit {
   }
   onDelete(equipe_ID): void {
     console.log(this.offres.id_offre);
-    if (confirm('Voulez-vous vraiment supprimer cette equipe?')) {
+    if (confirm('Voulez-vous vraiment supprimer cette offre?')) {
       console.log(equipe_ID);
       this.catservice.delete(equipe_ID).subscribe(data => {
         console.log(equipe_ID);

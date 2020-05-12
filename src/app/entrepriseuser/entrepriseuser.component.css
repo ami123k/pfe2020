@@ -2,15 +2,15 @@
 
 #parent{
   padding: 0 auto;
-  width: 1200px;
+  width: 500px;
 }
 #child-left{
   float: left;
-  width: 900px;
+  width: 100px;
 }
 #child-right{
   float: right;
-  width: 200px;
+  width: 350px;
 }
 ::ng-deep .mat-step-header:nth-of-type(1) .mat-step-icon {
   background-color: var(--my-var1);

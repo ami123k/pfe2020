@@ -83,7 +83,7 @@
 
           <div class="row" id="child-left">
 
-
+            <form #f="ngForm">
 
             <div class="col-md-6 col-sm-6"  >
 
@@ -95,6 +95,7 @@
                   <th>categorie</th>
                   <th>proposition </th>
                   <th>details</th>
+                  <th>supprimer</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -106,8 +107,9 @@
                   </div></td>
                   <td>{{s.name_entreprise}}</td>
                   <td>{{s.categories}}</td>
-                  <td><a class="btn btn-danger" (click)="findoffrebycategorie(s)"><div class="fa fa-fw fa-eraser"></div>proposition</a></td>
+                  <td><a class="btn btn-info" (click)="findoffrebycategorie(s)"><div class="fa fa-fw fa-eraser"></div>proposition</a></td>
                   <td><a class="btn btn-success" (click)="details(s)"><div class="fa fa-fw fa-edit"></div> details</a></td>
+                  <td><a class="btn btn-danger" (click)="onDelete(s.type,f.value)"><div class="fa fa-fw fa-edit"></div> supprimer</a></td>
                 </tr>
 
                 </tbody>
@@ -118,13 +120,14 @@
                   <th>categorie</th>
                   <th>proposition</th>
                   <th>details</th>
+                  <th>supprimer</th>
                 </tr>
                 </tfoot>
               </table>
 
             </div>
             <!--/ Team 1 end -->
-
+            </form>
             <!--/ Team 2 end -->
           </div>
 

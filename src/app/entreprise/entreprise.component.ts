@@ -22,7 +22,6 @@ import * as $ from 'jquery';
 })
 export class EntrepriseComponent implements OnInit {
   constructor(private uploadService: UploadFileService , private activatedRoute: ActivatedRoute,  private catservice: ServiceOffreService, private sanitizer: DomSanitizer , private router: Router) { }
-  description: string;
   public get triggerObservable(): Observable<void> {
     return this.trigger.asObservable();
   }
@@ -31,6 +30,7 @@ export class EntrepriseComponent implements OnInit {
   public get nextWebcamObservable(): Observable<boolean|string> {
     return this.nextWebcam.asObservable();
   }
+  description: string;
   public offres: Offre;
 
   cheminImage1: any = 'http://localhost:8080/files/';
@@ -71,23 +71,23 @@ export class EntrepriseComponent implements OnInit {
   public allowCameraSwitch = true;
   public multipleWebcamsAvailable = false;
   public deviceId: string;
+  dtOption: any = {};
   selected() {
     console.log(this.categorie);
   }
   selectFile(event) {
     this.selectedFiles = event.target.files;
   }
-  dtOption: any = {};
   ngOnInit(): void {
     this.uploadService.getFiles().subscribe(e => {
       this.t1 = e._embedded.entreprises;
       console.log(this.t1);
     });
-     WebcamUtil.getAvailableVideoInputs()
+    WebcamUtil.getAvailableVideoInputs()
       .then((mediaDevices: MediaDeviceInfo[]) => {
         this.multipleWebcamsAvailable = mediaDevices && mediaDevices.length > 1;
       });
-          this.afficheroffre();
+    this.afficheroffre();
 
     this.dtOption = {
       paging: true,
@@ -161,7 +161,7 @@ export class EntrepriseComponent implements OnInit {
   }
   findoffrebycategorie(s) {
 console.log(s);
-    this.router.navigateByUrl('offrebycat/' + btoa(s.logo));
+this.router.navigateByUrl('offrebycat/' + btoa(s.logo));
   }
 
 
@@ -216,6 +216,16 @@ console.log(s);
   }
 
 
+  onDelete(equipe_ID, value: any): void {
+    if (confirm('Voulez-vous vraiment supprimer cette entreprise?')) {
+
+      this.catservice.updateroleuser(equipe_ID, value)
+        .subscribe(data2 => {alert('fournisseur vers user'); this.router.navigateByUrl('/upload'); this.catservice.deleteentreprise(equipe_ID).subscribe(data => {
+          console.log(equipe_ID);
+          console.log('ok');
+        }); });
+    }
+  }
 
 
 

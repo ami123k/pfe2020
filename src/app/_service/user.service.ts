@@ -39,5 +39,7 @@ private req: HttpRequest<any>;
   getusers(): Observable<any> {
     return this.http.get(URL + '/userbyrole');
   }
-
+  getallusers(): Observable<any> {
+    return this.http.get(URL + '/listuser');
+  }
 }
