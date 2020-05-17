@@ -1,0 +1,8 @@
+
+localhost ansible_connection=local
+
+[Server]
+localhost
+
+[Server:vars]
+ansi_user= linux2

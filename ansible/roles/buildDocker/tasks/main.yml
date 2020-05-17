@@ -1,0 +1,5 @@
+---
+# tasks file for buildDocker
+
+- name: instal npm
+  apt: name=npm
