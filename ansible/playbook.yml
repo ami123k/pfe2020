@@ -2,6 +2,6 @@
 - hosts: Server
   gather_facts: true
   become: true
-  become_user: "{{ ansi_user }}
+  become_user: "{{ ansi_user }}"
   roles:
     - { role: buildDocker }
