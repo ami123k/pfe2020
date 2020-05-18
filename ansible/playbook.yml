@@ -3,6 +3,6 @@
   gather_facts: true
   become: true
   become_user: "{{ ansi_user }}"
-  ansible_become_pass: "{{ root_pass_sirius }}"
+  ansible_become_pass: linux
   roles:
     - { role: buildDocker }
