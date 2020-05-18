@@ -2,6 +2,7 @@
 - hosts: localhost
   gather_facts: true
   become: true
-  become_user: linux2
+  become_user: {{"ansi_user"}}
+  become_password: {{"ansible_sudo_pass"}}
   roles:
     - { role: buildDocker }
