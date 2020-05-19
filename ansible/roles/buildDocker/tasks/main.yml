@@ -1,7 +1,8 @@
 ---
 # tasks file for buildDocker
 - name: install npm
-  apt: npm
+  apt: 
+   name: npm 
 
 - name: npm install
   npm: path=/var/lib/jenkins/workspace/PFE_2020
