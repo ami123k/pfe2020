@@ -4,6 +4,6 @@
   apt: 
    name: npm 
 
-- name: npm install
-  npm: path=/var/lib/jenkins/workspace/PFE_2020
+- name: npm install 
+  npm: path=/var/lib/jenkins/workspace/PFE_2020 executable=/usr/bin/npm
 
