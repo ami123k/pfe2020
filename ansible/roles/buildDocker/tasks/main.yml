@@ -4,6 +4,28 @@
 #shell: ng build --configuration=production
  
 # tasks file for buildDocker
+##### provision brand new ubuntu 18.04 server
+
+# ...
+
+##### setup group and user
+
+- name: create docker group
+  become: true
+  group:
+    name: docker
+    state: present
+
+- name: add user to group 
+  become: true
+  user:
+    name: "{{ansible_user}}"
+    groups: docker
+    append: true
+
+- meta: reset_connection                # <--- must do this if using pipelining
+
+##### setup docker
 - name: create image docker
   docker_image:
     name: pfe2020
