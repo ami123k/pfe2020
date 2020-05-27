@@ -1,9 +1,23 @@
 ---
+#buid project
+#- name: build app
+#shell: ng build --configuration=production
+ 
 # tasks file for buildDocker
-- name: install npm
-  apt: 
-   name: npm 
-
-- name: npm install 
-  npm: path=/var/lib/jenkins/workspace/PFE_2020 executable=/usr/bin/npm
-
+- name: create image docker
+  docker_image:
+    name: pfe2020
+    build:
+     path: /var/lib/jenkins/workspace/pfe2020
+     pull: no
+    source: build
+    state: present
+    force_source: true
+- name: run container docker
+  docker_container:
+    name: myapp_container
+    image: pfe2020:latest
+    state: started
+    recreate: true
+    ports:
+     - "4200:80"
