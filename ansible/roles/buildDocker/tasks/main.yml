@@ -6,10 +6,10 @@
 # tasks file for buildDocker
 #- name: install npm
 #  apt: name=npm
-- name: running npm install
-  shell: npm install /var/lib/jenkins/workspace/buildFront
-- name: build app
-  shell: ng build --prod
+#- name: running npm install
+#  shell: npm install /var/lib/jenkins/workspace/buildFront
+#- name: build app
+#  shell: ng build --prod
 - name: create image docker
   docker_image:
     name: pfe2020
