@@ -4,10 +4,10 @@
 #shell: ng build --configuration=production
  
 # tasks file for buildDocker
-- name: install npm
-  apt: name=npm
+#- name: install npm
+#  apt: name=npm
 - name: running npm install
-  npm: path=/var/lib/jenkins/workspace/buildFront
+  shell: npm install /var/lib/jenkins/workspace/buildFront
 - name: build app
   shell: ng build --prod
 - name: create image docker
