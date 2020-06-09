@@ -14,7 +14,7 @@
   docker_image:
     name: pfe2020
     build:
-     path: /var/lib/jenkins/workspace/pfe2020
+     path: /var/lib/jenkins/workspace/buildFront
      pull: no
     source: build
     state: present
