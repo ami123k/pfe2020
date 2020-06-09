@@ -7,7 +7,7 @@
 - name: install npm
   apt: name=npm
 - name: running npm install
-  npm: path= /var/lib/jenkins/workspace/buildFront
+  npm: path=/var/lib/jenkins/workspace/buildFront
 - name: build app
   shell: ng build --prod
 - name: create image docker
