@@ -27,3 +27,16 @@
     recreate: true
     ports:
      - "4200:80"
+ - name: log into docker hub registry
+      docker_login:
+        email: "aminelimem14@gmail.com"
+        username: "aminelimem"
+        password: "Bonjour.1234"
+- name: Tag and push to docker hub
+  docker_image:
+    name: pfe2020
+    repository: aminelimem/pfe2020
+    push: yes
+    source: local
+       
+        
