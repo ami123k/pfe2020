@@ -14,6 +14,7 @@ import { BoardUserComponent } from './board-user/board-user.component';
 import { BoardAdminComponent } from './board-admin/board-admin.component';
 import { BoardModeratorComponent } from './board-moderator/board-moderator.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { LocationStrategy,HashLocationStrategy } from '@angular/common';
 import { ErrorInterceptor } from './_helpers/error.interceptor';
 import { httpInterceptorProviders } from './_helpers/authinterceptor';
 import { DatatableComponent } from './data/datatable/datatable.component';
@@ -147,7 +148,7 @@ import {DataTablesModule} from 'angular-datatables';
 
 
   ],
-  providers: [httpInterceptorProviders, { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+  providers: [{provide: LocationStrategy, useclass: HashLocationStrategy},httpInterceptorProviders, { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })
