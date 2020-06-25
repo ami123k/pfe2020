@@ -14,7 +14,6 @@ import { BoardUserComponent } from './board-user/board-user.component';
 import { BoardAdminComponent } from './board-admin/board-admin.component';
 import { BoardModeratorComponent } from './board-moderator/board-moderator.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { LocationStrategy,HashLocationStrategy } from '@angular/common';
 import { ErrorInterceptor } from './_helpers/error.interceptor';
 import { httpInterceptorProviders } from './_helpers/authinterceptor';
 import { DatatableComponent } from './data/datatable/datatable.component';
@@ -30,7 +29,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {GalleriaModule} from 'primeng/galleria';
 import { FindoffrebycategorieComponent } from './findoffrebycategorie/findoffrebycategorie.component';
 import {ScrollPanelModule} from 'primeng/scrollpanel';
-
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import { CameraComponent } from './proposer/camera.component';
 import {WebcamModule} from 'ngx-webcam';
 import { PropositionComponent } from './proposition/proposition.component';
@@ -69,6 +68,8 @@ import { DossierComponent } from './dossier/dossier.component';
 import { EntrepriseuserComponent } from './entrepriseuser/entrepriseuser.component';
 import { ListusersComponent } from './listusers/listusers.component';
 import {DataTablesModule} from 'angular-datatables';
+import {CarouselModule} from 'primeng/carousel';
+import {HashLocationStrategy, LocationStrategy} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -130,6 +131,7 @@ import {DataTablesModule} from 'angular-datatables';
     TabViewModule,
     ButtonModule,
     BrowserAnimationsModule,
+    ProgressSpinnerModule,
     GalleriaModule,
     ScrollPanelModule,
     WebcamModule,
@@ -138,6 +140,7 @@ import {DataTablesModule} from 'angular-datatables';
     DataTablesModule,
     RatingModule,
     ChartsModule,
+    CarouselModule,
     MatStepperModule,
     FormlyBootstrapModule,
     FormlyModule.forRoot({
@@ -148,7 +151,8 @@ import {DataTablesModule} from 'angular-datatables';
 
 
   ],
-  providers: [{provide: LocationStrategy, useclass: HashLocationStrategy},httpInterceptorProviders, { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy},
+    httpInterceptorProviders, { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })
