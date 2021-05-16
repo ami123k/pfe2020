@@ -31,7 +31,7 @@
   docker_login:
     email: "aminelimem14@gmail.com"
     username: "aminelimem"
-    password: "Bonjour.1234"
+    password: "*****"
 - name: Tag and push to docker hub
   docker_image:
     name: pfe2020:latest
